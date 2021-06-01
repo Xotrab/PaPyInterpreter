@@ -6,7 +6,6 @@ grammar PaPy;
 // --- TOKENS ---
 
 NL: '\r'?'\n';
-EMPTY_LINE: NL NL;
 LBR: '{';
 RBR: '}';
 LPAR: '(';
@@ -116,16 +115,16 @@ whileStatement:
   WHILE LPAR logicalExpression RPAR block;
 
 ifStatement:
-  IF LPAR expression RPAR block (EMPTY_LINE|elifStatement|elseStatement);
+  IF LPAR expression RPAR block (NL (elifStatement|elseStatement))?;
 
 elifStatement:
-  ELIF LPAR expression RPAR block (EMPTY_LINE|elifStatement|elseStatement);
+  ELIF LPAR expression RPAR block (NL (elifStatement|elseStatement))?;
 
 elseStatement:
-  ELSE block EMPTY_LINE;
+  ELSE block;
 
 block:
-  NL? LBR (statement|EMPTY_LINE)* RBR;
+  NL? LBR (statement|NL NL)* RBR;
 
 functionDeclaration:
   DEF IDENTIFIER LPAR (functionDeclarationArgument (COMMA functionDeclarationArgument)*)? RPAR (RET type)? functionBlock;
@@ -134,7 +133,7 @@ functionDeclarationArgument:
     type IDENTIFIER;
 
 functionBlock:
-  NL? LBR (statement|EMPTY_LINE)* (RETURN expression)? RBR;
+  NL? LBR (statement|NL)* (RETURN expression NL?)? RBR;
 
 funcCall:
   IDENTIFIER LPAR argList? RPAR;
