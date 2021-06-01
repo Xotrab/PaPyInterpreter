@@ -1,4 +1,4 @@
-package antlr;// Generated from PaPy.g4 by ANTLR 4.9.2
+// Generated from PaPy.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -15,6 +15,12 @@ public interface PaPyVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitProgram(PaPyParser.ProgramContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PaPyParser#section}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSection(PaPyParser.SectionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PaPyParser#statement}.
 	 * @param ctx the parse tree
@@ -33,12 +39,6 @@ public interface PaPyVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitArithmeticExpression(PaPyParser.ArithmeticExpressionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link PaPyParser#term}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitTerm(PaPyParser.TermContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PaPyParser#logicalExpression}.
 	 * @param ctx the parse tree
@@ -124,11 +124,17 @@ public interface PaPyVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunctionDeclaration(PaPyParser.FunctionDeclarationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PaPyParser#returnBlock}.
+	 * Visit a parse tree produced by {@link PaPyParser#functionDeclarationArgument}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitReturnBlock(PaPyParser.ReturnBlockContext ctx);
+	T visitFunctionDeclarationArgument(PaPyParser.FunctionDeclarationArgumentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PaPyParser#functionBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionBlock(PaPyParser.FunctionBlockContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PaPyParser#funcCall}.
 	 * @param ctx the parse tree

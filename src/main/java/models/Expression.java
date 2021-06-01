@@ -1,4 +1,4 @@
 package models;
 
-public class Expression extends Statement {
+public abstract class Expression extends Statement {
 }

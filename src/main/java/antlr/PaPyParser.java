@@ -1,5 +1,4 @@
 // Generated from PaPy.g4 by ANTLR 4.9.2
-package antlr;// Generated from PaPy.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -24,20 +23,22 @@ public class PaPyParser extends Parser {
 		GTE=32, GT=33, LT=34, AND=35, OR=36, NOT=37, TRUE=38, FALSE=39, DEF=40, 
 		RET=41, RETURN=42, COMMA=43, DOT=44, TAB=45, SPACES=46, IDENTIFIER=47;
 	public static final int
-		RULE_program = 0, RULE_statement = 1, RULE_expression = 2, RULE_arithmeticExpression = 3, 
-		RULE_term = 4, RULE_logicalExpression = 5, RULE_logicalAnd = 6, RULE_logicalTerm = 7, 
-		RULE_logicalResult = 8, RULE_variableDeclaration = 9, RULE_loopStatement = 10, 
-		RULE_forStatement = 11, RULE_range = 12, RULE_whileStatement = 13, RULE_ifStatement = 14, 
-		RULE_elifStatement = 15, RULE_elseStatement = 16, RULE_block = 17, RULE_functionDeclaration = 18, 
-		RULE_returnBlock = 19, RULE_funcCall = 20, RULE_argList = 21, RULE_value = 22, 
-		RULE_number = 23, RULE_logicalValue = 24, RULE_type = 25;
+		RULE_program = 0, RULE_section = 1, RULE_statement = 2, RULE_expression = 3, 
+		RULE_arithmeticExpression = 4, RULE_logicalExpression = 5, RULE_logicalAnd = 6, 
+		RULE_logicalTerm = 7, RULE_logicalResult = 8, RULE_variableDeclaration = 9, 
+		RULE_loopStatement = 10, RULE_forStatement = 11, RULE_range = 12, RULE_whileStatement = 13, 
+		RULE_ifStatement = 14, RULE_elifStatement = 15, RULE_elseStatement = 16, 
+		RULE_block = 17, RULE_functionDeclaration = 18, RULE_functionDeclarationArgument = 19, 
+		RULE_functionBlock = 20, RULE_funcCall = 21, RULE_argList = 22, RULE_value = 23, 
+		RULE_number = 24, RULE_logicalValue = 25, RULE_type = 26;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"program", "statement", "expression", "arithmeticExpression", "term", 
+			"program", "section", "statement", "expression", "arithmeticExpression", 
 			"logicalExpression", "logicalAnd", "logicalTerm", "logicalResult", "variableDeclaration", 
 			"loopStatement", "forStatement", "range", "whileStatement", "ifStatement", 
-			"elifStatement", "elseStatement", "block", "functionDeclaration", "returnBlock", 
-			"funcCall", "argList", "value", "number", "logicalValue", "type"
+			"elifStatement", "elseStatement", "block", "functionDeclaration", "functionDeclarationArgument", 
+			"functionBlock", "funcCall", "argList", "value", "number", "logicalValue", 
+			"type"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -116,21 +117,11 @@ public class PaPyParser extends Parser {
 
 	public static class ProgramContext extends ParserRuleContext {
 		public TerminalNode EOF() { return getToken(PaPyParser.EOF, 0); }
-		public List<StatementContext> statement() {
-			return getRuleContexts(StatementContext.class);
+		public List<SectionContext> section() {
+			return getRuleContexts(SectionContext.class);
 		}
-		public StatementContext statement(int i) {
-			return getRuleContext(StatementContext.class,i);
-		}
-		public List<TerminalNode> NL() { return getTokens(PaPyParser.NL); }
-		public TerminalNode NL(int i) {
-			return getToken(PaPyParser.NL, i);
-		}
-		public List<FunctionDeclarationContext> functionDeclaration() {
-			return getRuleContexts(FunctionDeclarationContext.class);
-		}
-		public FunctionDeclarationContext functionDeclaration(int i) {
-			return getRuleContext(FunctionDeclarationContext.class,i);
+		public SectionContext section(int i) {
+			return getRuleContext(SectionContext.class,i);
 		}
 		public ProgramContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -146,46 +137,102 @@ public class PaPyParser extends Parser {
 	public final ProgramContext program() throws RecognitionException {
 		ProgramContext _localctx = new ProgramContext(_ctx, getState());
 		enterRule(_localctx, 0, RULE_program);
+		int _la;
 		try {
-			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(57);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
-			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1 ) {
-					{
-					setState(55);
-					_errHandler.sync(this);
-					switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
-					case 1:
-						{
-						setState(52);
-						statement();
-						}
-						break;
-					case 2:
-						{
-						setState(53);
-						match(NL);
-						}
-						break;
-					case 3:
-						{
-						setState(54);
-						functionDeclaration();
-						}
-						break;
-					}
-					} 
+			_la = _input.LA(1);
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << NL) | (1L << LPAR) | (1L << INT) | (1L << FLOAT) | (1L << STRING) | (1L << INT_TYPE) | (1L << FLOAT_TYPE) | (1L << BOOL_TYPE) | (1L << STRING_TYPE) | (1L << FOR) | (1L << WHILE) | (1L << IF) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << DEF) | (1L << IDENTIFIER))) != 0)) {
+				{
+				{
+				setState(54);
+				section();
+				}
 				}
 				setState(59);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
+				_la = _input.LA(1);
 			}
 			setState(60);
 			match(EOF);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class SectionContext extends ParserRuleContext {
+		public StatementContext statement() {
+			return getRuleContext(StatementContext.class,0);
+		}
+		public FunctionDeclarationContext functionDeclaration() {
+			return getRuleContext(FunctionDeclarationContext.class,0);
+		}
+		public TerminalNode NL() { return getToken(PaPyParser.NL, 0); }
+		public SectionContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_section; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PaPyVisitor ) return ((PaPyVisitor<? extends T>)visitor).visitSection(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final SectionContext section() throws RecognitionException {
+		SectionContext _localctx = new SectionContext(_ctx, getState());
+		enterRule(_localctx, 2, RULE_section);
+		try {
+			setState(65);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case LPAR:
+			case INT:
+			case FLOAT:
+			case STRING:
+			case INT_TYPE:
+			case FLOAT_TYPE:
+			case BOOL_TYPE:
+			case STRING_TYPE:
+			case FOR:
+			case WHILE:
+			case IF:
+			case NOT:
+			case TRUE:
+			case FALSE:
+			case IDENTIFIER:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(62);
+				statement();
+				}
+				break;
+			case DEF:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(63);
+				functionDeclaration();
+				}
+				break;
+			case NL:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(64);
+				match(NL);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -229,45 +276,45 @@ public class PaPyParser extends Parser {
 
 	public final StatementContext statement() throws RecognitionException {
 		StatementContext _localctx = new StatementContext(_ctx, getState());
-		enterRule(_localctx, 2, RULE_statement);
+		enterRule(_localctx, 4, RULE_statement);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(67);
+			setState(72);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 			case 1:
 				{
-				setState(62);
+				setState(67);
 				expression();
 				}
 				break;
 			case 2:
 				{
-				setState(63);
+				setState(68);
 				variableDeclaration();
 				}
 				break;
 			case 3:
 				{
-				setState(64);
+				setState(69);
 				loopStatement();
 				}
 				break;
 			case 4:
 				{
-				setState(65);
+				setState(70);
 				funcCall();
 				}
 				break;
 			case 5:
 				{
-				setState(66);
+				setState(71);
 				ifStatement();
 				}
 				break;
 			}
-			setState(69);
+			setState(74);
 			match(NL);
 			}
 		}
@@ -289,6 +336,9 @@ public class PaPyParser extends Parser {
 		public LogicalExpressionContext logicalExpression() {
 			return getRuleContext(LogicalExpressionContext.class,0);
 		}
+		public ValueContext value() {
+			return getRuleContext(ValueContext.class,0);
+		}
 		public ExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -302,23 +352,30 @@ public class PaPyParser extends Parser {
 
 	public final ExpressionContext expression() throws RecognitionException {
 		ExpressionContext _localctx = new ExpressionContext(_ctx, getState());
-		enterRule(_localctx, 4, RULE_expression);
+		enterRule(_localctx, 6, RULE_expression);
 		try {
-			setState(73);
+			setState(79);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(71);
+				setState(76);
 				arithmeticExpression(0);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(72);
+				setState(77);
 				logicalExpression(0);
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(78);
+				value();
 				}
 				break;
 			}
@@ -335,15 +392,19 @@ public class PaPyParser extends Parser {
 	}
 
 	public static class ArithmeticExpressionContext extends ParserRuleContext {
-		public TermContext term() {
-			return getRuleContext(TermContext.class,0);
-		}
+		public TerminalNode LPAR() { return getToken(PaPyParser.LPAR, 0); }
 		public List<ArithmeticExpressionContext> arithmeticExpression() {
 			return getRuleContexts(ArithmeticExpressionContext.class);
 		}
 		public ArithmeticExpressionContext arithmeticExpression(int i) {
 			return getRuleContext(ArithmeticExpressionContext.class,i);
 		}
+		public TerminalNode RPAR() { return getToken(PaPyParser.RPAR, 0); }
+		public ValueContext value() {
+			return getRuleContext(ValueContext.class,0);
+		}
+		public TerminalNode MUL() { return getToken(PaPyParser.MUL, 0); }
+		public TerminalNode DIV() { return getToken(PaPyParser.DIV, 0); }
 		public TerminalNode ADD() { return getToken(PaPyParser.ADD, 0); }
 		public TerminalNode SUB() { return getToken(PaPyParser.SUB, 0); }
 		public ArithmeticExpressionContext(ParserRuleContext parent, int invokingState) {
@@ -366,133 +427,41 @@ public class PaPyParser extends Parser {
 		int _parentState = getState();
 		ArithmeticExpressionContext _localctx = new ArithmeticExpressionContext(_ctx, _parentState);
 		ArithmeticExpressionContext _prevctx = _localctx;
-		int _startState = 6;
-		enterRecursionRule(_localctx, 6, RULE_arithmeticExpression, _p);
-		int _la;
-		try {
-			int _alt;
-			enterOuterAlt(_localctx, 1);
-			{
-			{
-			setState(76);
-			term(0);
-			}
-			_ctx.stop = _input.LT(-1);
-			setState(83);
-			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
-			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1 ) {
-					if ( _parseListeners!=null ) triggerExitRuleEvent();
-					_prevctx = _localctx;
-					{
-					{
-					_localctx = new ArithmeticExpressionContext(_parentctx, _parentState);
-					pushNewRecursionContext(_localctx, _startState, RULE_arithmeticExpression);
-					setState(78);
-					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
-					setState(79);
-					_la = _input.LA(1);
-					if ( !(_la==ADD || _la==SUB) ) {
-					_errHandler.recoverInline(this);
-					}
-					else {
-						if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-						_errHandler.reportMatch(this);
-						consume();
-					}
-					setState(80);
-					arithmeticExpression(2);
-					}
-					} 
-				}
-				setState(85);
-				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
-			}
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			unrollRecursionContexts(_parentctx);
-		}
-		return _localctx;
-	}
-
-	public static class TermContext extends ParserRuleContext {
-		public TerminalNode LPAR() { return getToken(PaPyParser.LPAR, 0); }
-		public ArithmeticExpressionContext arithmeticExpression() {
-			return getRuleContext(ArithmeticExpressionContext.class,0);
-		}
-		public TerminalNode RPAR() { return getToken(PaPyParser.RPAR, 0); }
-		public ValueContext value() {
-			return getRuleContext(ValueContext.class,0);
-		}
-		public List<TermContext> term() {
-			return getRuleContexts(TermContext.class);
-		}
-		public TermContext term(int i) {
-			return getRuleContext(TermContext.class,i);
-		}
-		public TerminalNode MUL() { return getToken(PaPyParser.MUL, 0); }
-		public TerminalNode DIV() { return getToken(PaPyParser.DIV, 0); }
-		public TermContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_term; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PaPyVisitor ) return ((PaPyVisitor<? extends T>)visitor).visitTerm(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final TermContext term() throws RecognitionException {
-		return term(0);
-	}
-
-	private TermContext term(int _p) throws RecognitionException {
-		ParserRuleContext _parentctx = _ctx;
-		int _parentState = getState();
-		TermContext _localctx = new TermContext(_ctx, _parentState);
-		TermContext _prevctx = _localctx;
 		int _startState = 8;
-		enterRecursionRule(_localctx, 8, RULE_term, _p);
-		int _la;
+		enterRecursionRule(_localctx, 8, RULE_arithmeticExpression, _p);
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(92);
+			setState(87);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
-			case 1:
+			switch (_input.LA(1)) {
+			case LPAR:
 				{
-				}
-				break;
-			case 2:
-				{
-				setState(87);
+				setState(82);
 				match(LPAR);
-				setState(88);
+				setState(83);
 				arithmeticExpression(0);
-				setState(89);
+				setState(84);
 				match(RPAR);
 				}
 				break;
-			case 3:
+			case INT:
+			case FLOAT:
+			case STRING:
+			case TRUE:
+			case FALSE:
+			case IDENTIFIER:
 				{
-				setState(91);
+				setState(86);
 				value();
 				}
 				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(99);
+			setState(103);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,6,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -500,27 +469,61 @@ public class PaPyParser extends Parser {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					{
-					_localctx = new TermContext(_parentctx, _parentState);
-					pushNewRecursionContext(_localctx, _startState, RULE_term);
-					setState(94);
-					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
-					setState(95);
-					_la = _input.LA(1);
-					if ( !(_la==MUL || _la==DIV) ) {
-					_errHandler.recoverInline(this);
-					}
-					else {
-						if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-						_errHandler.reportMatch(this);
-						consume();
-					}
-					setState(96);
-					term(2);
+					setState(101);
+					_errHandler.sync(this);
+					switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
+					case 1:
+						{
+						_localctx = new ArithmeticExpressionContext(_parentctx, _parentState);
+						pushNewRecursionContext(_localctx, _startState, RULE_arithmeticExpression);
+						setState(89);
+						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
+						setState(90);
+						match(MUL);
+						setState(91);
+						arithmeticExpression(6);
+						}
+						break;
+					case 2:
+						{
+						_localctx = new ArithmeticExpressionContext(_parentctx, _parentState);
+						pushNewRecursionContext(_localctx, _startState, RULE_arithmeticExpression);
+						setState(92);
+						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
+						setState(93);
+						match(DIV);
+						setState(94);
+						arithmeticExpression(5);
+						}
+						break;
+					case 3:
+						{
+						_localctx = new ArithmeticExpressionContext(_parentctx, _parentState);
+						pushNewRecursionContext(_localctx, _startState, RULE_arithmeticExpression);
+						setState(95);
+						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
+						setState(96);
+						match(ADD);
+						setState(97);
+						arithmeticExpression(4);
+						}
+						break;
+					case 4:
+						{
+						_localctx = new ArithmeticExpressionContext(_parentctx, _parentState);
+						pushNewRecursionContext(_localctx, _startState, RULE_arithmeticExpression);
+						setState(98);
+						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
+						setState(99);
+						match(SUB);
+						setState(100);
+						arithmeticExpression(3);
+						}
+						break;
 					}
 					} 
 				}
-				setState(101);
+				setState(105);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,6,_ctx);
 			}
@@ -575,11 +578,11 @@ public class PaPyParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			setState(103);
+			setState(107);
 			logicalAnd(0);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(110);
+			setState(114);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,7,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -590,16 +593,16 @@ public class PaPyParser extends Parser {
 					{
 					_localctx = new LogicalExpressionContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_logicalExpression);
-					setState(105);
+					setState(109);
 					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
-					setState(106);
+					setState(110);
 					match(OR);
-					setState(107);
+					setState(111);
 					logicalExpression(2);
 					}
 					} 
 				}
-				setState(112);
+				setState(116);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,7,_ctx);
 			}
@@ -654,11 +657,11 @@ public class PaPyParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			setState(114);
+			setState(118);
 			logicalTerm();
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(121);
+			setState(125);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -669,16 +672,16 @@ public class PaPyParser extends Parser {
 					{
 					_localctx = new LogicalAndContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_logicalAnd);
-					setState(116);
+					setState(120);
 					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
-					setState(117);
+					setState(121);
 					match(AND);
-					setState(118);
+					setState(122);
 					logicalAnd(2);
 					}
 					} 
 				}
-				setState(123);
+				setState(127);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
 			}
@@ -718,7 +721,7 @@ public class PaPyParser extends Parser {
 		LogicalTermContext _localctx = new LogicalTermContext(_ctx, getState());
 		enterRule(_localctx, 14, RULE_logicalTerm);
 		try {
-			setState(127);
+			setState(131);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case LPAR:
@@ -730,16 +733,16 @@ public class PaPyParser extends Parser {
 			case IDENTIFIER:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(124);
+				setState(128);
 				logicalResult(0);
 				}
 				break;
 			case NOT:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(125);
+				setState(129);
 				match(NOT);
-				setState(126);
+				setState(130);
 				logicalTerm();
 				}
 				break;
@@ -806,16 +809,16 @@ public class PaPyParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(135);
+			setState(139);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case LPAR:
 				{
-				setState(130);
+				setState(134);
 				match(LPAR);
-				setState(131);
+				setState(135);
 				logicalExpression(0);
-				setState(132);
+				setState(136);
 				match(RPAR);
 				}
 				break;
@@ -826,7 +829,7 @@ public class PaPyParser extends Parser {
 			case FALSE:
 			case IDENTIFIER:
 				{
-				setState(134);
+				setState(138);
 				value();
 				}
 				break;
@@ -834,7 +837,7 @@ public class PaPyParser extends Parser {
 				throw new NoViableAltException(this);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(142);
+			setState(146);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,11,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -845,9 +848,9 @@ public class PaPyParser extends Parser {
 					{
 					_localctx = new LogicalResultContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_logicalResult);
-					setState(137);
+					setState(141);
 					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
-					setState(138);
+					setState(142);
 					_la = _input.LA(1);
 					if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << EQ) | (1L << NEQ) | (1L << LTE) | (1L << GTE) | (1L << GT) | (1L << LT))) != 0)) ) {
 					_errHandler.recoverInline(this);
@@ -857,12 +860,12 @@ public class PaPyParser extends Parser {
 						_errHandler.reportMatch(this);
 						consume();
 					}
-					setState(139);
+					setState(143);
 					logicalResult(2);
 					}
 					} 
 				}
-				setState(144);
+				setState(148);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,11,_ctx);
 			}
@@ -885,14 +888,8 @@ public class PaPyParser extends Parser {
 		}
 		public TerminalNode IDENTIFIER() { return getToken(PaPyParser.IDENTIFIER, 0); }
 		public TerminalNode ASSIGN() { return getToken(PaPyParser.ASSIGN, 0); }
-		public ValueContext value() {
-			return getRuleContext(ValueContext.class,0);
-		}
-		public ArithmeticExpressionContext arithmeticExpression() {
-			return getRuleContext(ArithmeticExpressionContext.class,0);
-		}
-		public LogicalExpressionContext logicalExpression() {
-			return getRuleContext(LogicalExpressionContext.class,0);
+		public ExpressionContext expression() {
+			return getRuleContext(ExpressionContext.class,0);
 		}
 		public VariableDeclarationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -911,34 +908,14 @@ public class PaPyParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(145);
+			setState(149);
 			type();
-			setState(146);
+			setState(150);
 			match(IDENTIFIER);
-			setState(147);
-			match(ASSIGN);
 			setState(151);
-			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,12,_ctx) ) {
-			case 1:
-				{
-				setState(148);
-				value();
-				}
-				break;
-			case 2:
-				{
-				setState(149);
-				arithmeticExpression(0);
-				}
-				break;
-			case 3:
-				{
-				setState(150);
-				logicalExpression(0);
-				}
-				break;
-			}
+			match(ASSIGN);
+			setState(152);
+			expression();
 			}
 		}
 		catch (RecognitionException re) {
@@ -974,20 +951,20 @@ public class PaPyParser extends Parser {
 		LoopStatementContext _localctx = new LoopStatementContext(_ctx, getState());
 		enterRule(_localctx, 20, RULE_loopStatement);
 		try {
-			setState(155);
+			setState(156);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case FOR:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(153);
+				setState(154);
 				forStatement();
 				}
 				break;
 			case WHILE:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(154);
+				setState(155);
 				whileStatement();
 				}
 				break;
@@ -1033,15 +1010,15 @@ public class PaPyParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(157);
-			match(FOR);
 			setState(158);
-			match(IDENTIFIER);
+			match(FOR);
 			setState(159);
-			match(IN);
+			match(IDENTIFIER);
 			setState(160);
-			range();
+			match(IN);
 			setState(161);
+			range();
+			setState(162);
 			block();
 			}
 		}
@@ -1084,17 +1061,17 @@ public class PaPyParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(163);
-			match(LPAR);
 			setState(164);
-			match(INT);
+			match(LPAR);
 			setState(165);
-			match(DOT);
+			match(INT);
 			setState(166);
 			match(DOT);
 			setState(167);
-			match(INT);
+			match(DOT);
 			setState(168);
+			match(INT);
+			setState(169);
 			match(RPAR);
 			}
 		}
@@ -1136,15 +1113,15 @@ public class PaPyParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(170);
-			match(WHILE);
 			setState(171);
-			match(LPAR);
+			match(WHILE);
 			setState(172);
-			logicalExpression(0);
+			match(LPAR);
 			setState(173);
-			match(RPAR);
+			logicalExpression(0);
 			setState(174);
+			match(RPAR);
+			setState(175);
 			block();
 			}
 		}
@@ -1193,34 +1170,34 @@ public class PaPyParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(176);
-			match(IF);
 			setState(177);
-			match(LPAR);
+			match(IF);
 			setState(178);
-			expression();
+			match(LPAR);
 			setState(179);
-			match(RPAR);
+			expression();
 			setState(180);
+			match(RPAR);
+			setState(181);
 			block();
-			setState(184);
+			setState(185);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case EMPTY_LINE:
 				{
-				setState(181);
+				setState(182);
 				match(EMPTY_LINE);
 				}
 				break;
 			case ELIF:
 				{
-				setState(182);
+				setState(183);
 				elifStatement();
 				}
 				break;
 			case ELSE:
 				{
-				setState(183);
+				setState(184);
 				elseStatement();
 				}
 				break;
@@ -1274,34 +1251,34 @@ public class PaPyParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(186);
-			match(ELIF);
 			setState(187);
-			match(LPAR);
+			match(ELIF);
 			setState(188);
-			expression();
+			match(LPAR);
 			setState(189);
-			match(RPAR);
+			expression();
 			setState(190);
+			match(RPAR);
+			setState(191);
 			block();
-			setState(194);
+			setState(195);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case EMPTY_LINE:
 				{
-				setState(191);
+				setState(192);
 				match(EMPTY_LINE);
 				}
 				break;
 			case ELIF:
 				{
-				setState(192);
+				setState(193);
 				elifStatement();
 				}
 				break;
 			case ELSE:
 				{
-				setState(193);
+				setState(194);
 				elseStatement();
 				}
 				break;
@@ -1344,11 +1321,11 @@ public class PaPyParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(196);
-			match(ELSE);
 			setState(197);
-			block();
+			match(ELSE);
 			setState(198);
+			block();
+			setState(199);
 			match(EMPTY_LINE);
 			}
 		}
@@ -1393,50 +1370,63 @@ public class PaPyParser extends Parser {
 		enterRule(_localctx, 34, RULE_block);
 		int _la;
 		try {
-			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(201);
+			setState(202);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==NL) {
 				{
-				setState(200);
+				setState(201);
 				match(NL);
 				}
 			}
 
-			setState(203);
+			setState(204);
 			match(LBR);
-			setState(208);
+			setState(209);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,18,_ctx);
-			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1 ) {
+			_la = _input.LA(1);
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << EMPTY_LINE) | (1L << LPAR) | (1L << INT) | (1L << FLOAT) | (1L << STRING) | (1L << INT_TYPE) | (1L << FLOAT_TYPE) | (1L << BOOL_TYPE) | (1L << STRING_TYPE) | (1L << FOR) | (1L << WHILE) | (1L << IF) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << IDENTIFIER))) != 0)) {
+				{
+				setState(207);
+				_errHandler.sync(this);
+				switch (_input.LA(1)) {
+				case LPAR:
+				case INT:
+				case FLOAT:
+				case STRING:
+				case INT_TYPE:
+				case FLOAT_TYPE:
+				case BOOL_TYPE:
+				case STRING_TYPE:
+				case FOR:
+				case WHILE:
+				case IF:
+				case NOT:
+				case TRUE:
+				case FALSE:
+				case IDENTIFIER:
+					{
+					setState(205);
+					statement();
+					}
+					break;
+				case EMPTY_LINE:
 					{
 					setState(206);
-					_errHandler.sync(this);
-					switch ( getInterpreter().adaptivePredict(_input,17,_ctx) ) {
-					case 1:
-						{
-						setState(204);
-						statement();
-						}
-						break;
-					case 2:
-						{
-						setState(205);
-						match(EMPTY_LINE);
-						}
-						break;
+					match(EMPTY_LINE);
 					}
-					} 
+					break;
+				default:
+					throw new NoViableAltException(this);
 				}
-				setState(210);
+				}
+				setState(211);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,18,_ctx);
+				_la = _input.LA(1);
 			}
-			setState(211);
+			setState(212);
 			match(RBR);
 			}
 		}
@@ -1453,28 +1443,25 @@ public class PaPyParser extends Parser {
 
 	public static class FunctionDeclarationContext extends ParserRuleContext {
 		public TerminalNode DEF() { return getToken(PaPyParser.DEF, 0); }
-		public List<TerminalNode> IDENTIFIER() { return getTokens(PaPyParser.IDENTIFIER); }
-		public TerminalNode IDENTIFIER(int i) {
-			return getToken(PaPyParser.IDENTIFIER, i);
-		}
+		public TerminalNode IDENTIFIER() { return getToken(PaPyParser.IDENTIFIER, 0); }
 		public TerminalNode LPAR() { return getToken(PaPyParser.LPAR, 0); }
 		public TerminalNode RPAR() { return getToken(PaPyParser.RPAR, 0); }
+		public FunctionBlockContext functionBlock() {
+			return getRuleContext(FunctionBlockContext.class,0);
+		}
+		public List<FunctionDeclarationArgumentContext> functionDeclarationArgument() {
+			return getRuleContexts(FunctionDeclarationArgumentContext.class);
+		}
+		public FunctionDeclarationArgumentContext functionDeclarationArgument(int i) {
+			return getRuleContext(FunctionDeclarationArgumentContext.class,i);
+		}
 		public TerminalNode RET() { return getToken(PaPyParser.RET, 0); }
-		public List<TypeContext> type() {
-			return getRuleContexts(TypeContext.class);
-		}
-		public TypeContext type(int i) {
-			return getRuleContext(TypeContext.class,i);
-		}
-		public ReturnBlockContext returnBlock() {
-			return getRuleContext(ReturnBlockContext.class,0);
+		public TypeContext type() {
+			return getRuleContext(TypeContext.class,0);
 		}
 		public List<TerminalNode> COMMA() { return getTokens(PaPyParser.COMMA); }
 		public TerminalNode COMMA(int i) {
 			return getToken(PaPyParser.COMMA, i);
-		}
-		public BlockContext block() {
-			return getRuleContext(BlockContext.class,0);
 		}
 		public FunctionDeclarationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1492,103 +1479,56 @@ public class PaPyParser extends Parser {
 		enterRule(_localctx, 36, RULE_functionDeclaration);
 		int _la;
 		try {
-			setState(252);
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(214);
+			match(DEF);
+			setState(215);
+			match(IDENTIFIER);
+			setState(216);
+			match(LPAR);
+			setState(225);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,23,_ctx) ) {
-			case 1:
-				enterOuterAlt(_localctx, 1);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INT_TYPE) | (1L << FLOAT_TYPE) | (1L << BOOL_TYPE) | (1L << STRING_TYPE))) != 0)) {
 				{
-				setState(213);
-				match(DEF);
-				setState(214);
-				match(IDENTIFIER);
-				setState(215);
-				match(LPAR);
-				setState(227);
+				setState(217);
+				functionDeclarationArgument();
+				setState(222);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INT_TYPE) | (1L << FLOAT_TYPE) | (1L << BOOL_TYPE) | (1L << STRING_TYPE))) != 0)) {
+				while (_la==COMMA) {
 					{
-					setState(216);
-					type();
-					setState(217);
-					match(IDENTIFIER);
+					{
+					setState(218);
+					match(COMMA);
+					setState(219);
+					functionDeclarationArgument();
+					}
+					}
 					setState(224);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
-					while (_la==COMMA) {
-						{
-						{
-						setState(218);
-						match(COMMA);
-						setState(219);
-						type();
-						setState(220);
-						match(IDENTIFIER);
-						}
-						}
-						setState(226);
-						_errHandler.sync(this);
-						_la = _input.LA(1);
-					}
-					}
 				}
+				}
+			}
 
-				setState(229);
-				match(RPAR);
-				setState(230);
-				match(RET);
-				setState(231);
-				type();
-				setState(232);
-				returnBlock();
-				}
-				break;
-			case 2:
-				enterOuterAlt(_localctx, 2);
+			setState(227);
+			match(RPAR);
+			setState(230);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if (_la==RET) {
 				{
-				setState(234);
-				match(DEF);
-				setState(235);
-				match(IDENTIFIER);
-				setState(236);
-				match(LPAR);
-				setState(248);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INT_TYPE) | (1L << FLOAT_TYPE) | (1L << BOOL_TYPE) | (1L << STRING_TYPE))) != 0)) {
-					{
-					setState(237);
-					type();
-					setState(238);
-					match(IDENTIFIER);
-					setState(245);
-					_errHandler.sync(this);
-					_la = _input.LA(1);
-					while (_la==COMMA) {
-						{
-						{
-						setState(239);
-						match(COMMA);
-						setState(240);
-						type();
-						setState(241);
-						match(IDENTIFIER);
-						}
-						}
-						setState(247);
-						_errHandler.sync(this);
-						_la = _input.LA(1);
-					}
-					}
+				setState(228);
+				match(RET);
+				setState(229);
+				type();
 				}
+			}
 
-				setState(250);
-				match(RPAR);
-				setState(251);
-				block();
-				}
-				break;
+			setState(232);
+			functionBlock();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1602,16 +1542,48 @@ public class PaPyParser extends Parser {
 		return _localctx;
 	}
 
-	public static class ReturnBlockContext extends ParserRuleContext {
-		public TerminalNode LBR() { return getToken(PaPyParser.LBR, 0); }
-		public TerminalNode RETURN() { return getToken(PaPyParser.RETURN, 0); }
-		public ValueContext value() {
-			return getRuleContext(ValueContext.class,0);
-		}
-		public ExpressionContext expression() {
-			return getRuleContext(ExpressionContext.class,0);
+	public static class FunctionDeclarationArgumentContext extends ParserRuleContext {
+		public TypeContext type() {
+			return getRuleContext(TypeContext.class,0);
 		}
 		public TerminalNode IDENTIFIER() { return getToken(PaPyParser.IDENTIFIER, 0); }
+		public FunctionDeclarationArgumentContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_functionDeclarationArgument; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PaPyVisitor ) return ((PaPyVisitor<? extends T>)visitor).visitFunctionDeclarationArgument(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final FunctionDeclarationArgumentContext functionDeclarationArgument() throws RecognitionException {
+		FunctionDeclarationArgumentContext _localctx = new FunctionDeclarationArgumentContext(_ctx, getState());
+		enterRule(_localctx, 38, RULE_functionDeclarationArgument);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(234);
+			type();
+			setState(235);
+			match(IDENTIFIER);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class FunctionBlockContext extends ParserRuleContext {
+		public TerminalNode LBR() { return getToken(PaPyParser.LBR, 0); }
+		public TerminalNode RBR() { return getToken(PaPyParser.RBR, 0); }
 		public TerminalNode NL() { return getToken(PaPyParser.NL, 0); }
 		public List<StatementContext> statement() {
 			return getRuleContexts(StatementContext.class);
@@ -1623,89 +1595,96 @@ public class PaPyParser extends Parser {
 		public TerminalNode EMPTY_LINE(int i) {
 			return getToken(PaPyParser.EMPTY_LINE, i);
 		}
-		public ReturnBlockContext(ParserRuleContext parent, int invokingState) {
+		public TerminalNode RETURN() { return getToken(PaPyParser.RETURN, 0); }
+		public ExpressionContext expression() {
+			return getRuleContext(ExpressionContext.class,0);
+		}
+		public FunctionBlockContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_returnBlock; }
+		@Override public int getRuleIndex() { return RULE_functionBlock; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PaPyVisitor ) return ((PaPyVisitor<? extends T>)visitor).visitReturnBlock(this);
+			if ( visitor instanceof PaPyVisitor ) return ((PaPyVisitor<? extends T>)visitor).visitFunctionBlock(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final ReturnBlockContext returnBlock() throws RecognitionException {
-		ReturnBlockContext _localctx = new ReturnBlockContext(_ctx, getState());
-		enterRule(_localctx, 38, RULE_returnBlock);
+	public final FunctionBlockContext functionBlock() throws RecognitionException {
+		FunctionBlockContext _localctx = new FunctionBlockContext(_ctx, getState());
+		enterRule(_localctx, 40, RULE_functionBlock);
 		int _la;
 		try {
-			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(255);
+			setState(238);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==NL) {
 				{
-				setState(254);
+				setState(237);
 				match(NL);
 				}
 			}
 
-			setState(257);
+			setState(240);
 			match(LBR);
-			setState(262);
+			setState(245);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,26,_ctx);
-			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1 ) {
-					{
-					setState(260);
-					_errHandler.sync(this);
-					switch ( getInterpreter().adaptivePredict(_input,25,_ctx) ) {
-					case 1:
-						{
-						setState(258);
-						statement();
-						}
-						break;
-					case 2:
-						{
-						setState(259);
-						match(EMPTY_LINE);
-						}
-						break;
-					}
-					} 
-				}
-				setState(264);
+			_la = _input.LA(1);
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << EMPTY_LINE) | (1L << LPAR) | (1L << INT) | (1L << FLOAT) | (1L << STRING) | (1L << INT_TYPE) | (1L << FLOAT_TYPE) | (1L << BOOL_TYPE) | (1L << STRING_TYPE) | (1L << FOR) | (1L << WHILE) | (1L << IF) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << IDENTIFIER))) != 0)) {
+				{
+				setState(243);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,26,_ctx);
-			}
-			setState(265);
-			match(RETURN);
-			setState(269);
-			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,27,_ctx) ) {
-			case 1:
-				{
-				setState(266);
-				value();
+				switch (_input.LA(1)) {
+				case LPAR:
+				case INT:
+				case FLOAT:
+				case STRING:
+				case INT_TYPE:
+				case FLOAT_TYPE:
+				case BOOL_TYPE:
+				case STRING_TYPE:
+				case FOR:
+				case WHILE:
+				case IF:
+				case NOT:
+				case TRUE:
+				case FALSE:
+				case IDENTIFIER:
+					{
+					setState(241);
+					statement();
+					}
+					break;
+				case EMPTY_LINE:
+					{
+					setState(242);
+					match(EMPTY_LINE);
+					}
+					break;
+				default:
+					throw new NoViableAltException(this);
 				}
-				break;
-			case 2:
+				}
+				setState(247);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(250);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if (_la==RETURN) {
 				{
-				setState(267);
+				setState(248);
+				match(RETURN);
+				setState(249);
 				expression();
 				}
-				break;
-			case 3:
-				{
-				setState(268);
-				match(IDENTIFIER);
-				}
-				break;
 			}
+
+			setState(252);
+			match(RBR);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1739,26 +1718,26 @@ public class PaPyParser extends Parser {
 
 	public final FuncCallContext funcCall() throws RecognitionException {
 		FuncCallContext _localctx = new FuncCallContext(_ctx, getState());
-		enterRule(_localctx, 40, RULE_funcCall);
+		enterRule(_localctx, 42, RULE_funcCall);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(271);
+			setState(254);
 			match(IDENTIFIER);
-			setState(272);
+			setState(255);
 			match(LPAR);
-			setState(274);
+			setState(257);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INT) | (1L << FLOAT) | (1L << STRING) | (1L << TRUE) | (1L << FALSE) | (1L << IDENTIFIER))) != 0)) {
 				{
-				setState(273);
+				setState(256);
 				argList();
 				}
 			}
 
-			setState(276);
+			setState(259);
 			match(RPAR);
 			}
 		}
@@ -1797,26 +1776,26 @@ public class PaPyParser extends Parser {
 
 	public final ArgListContext argList() throws RecognitionException {
 		ArgListContext _localctx = new ArgListContext(_ctx, getState());
-		enterRule(_localctx, 42, RULE_argList);
+		enterRule(_localctx, 44, RULE_argList);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(278);
+			setState(261);
 			value();
-			setState(283);
+			setState(266);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==COMMA) {
 				{
 				{
-				setState(279);
+				setState(262);
 				match(COMMA);
-				setState(280);
+				setState(263);
 				value();
 				}
 				}
-				setState(285);
+				setState(268);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -1858,43 +1837,43 @@ public class PaPyParser extends Parser {
 
 	public final ValueContext value() throws RecognitionException {
 		ValueContext _localctx = new ValueContext(_ctx, getState());
-		enterRule(_localctx, 44, RULE_value);
+		enterRule(_localctx, 46, RULE_value);
 		try {
-			setState(291);
+			setState(274);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,30,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,27,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(286);
+				setState(269);
 				number();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(287);
+				setState(270);
 				funcCall();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(288);
+				setState(271);
 				match(IDENTIFIER);
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(289);
+				setState(272);
 				logicalValue();
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(290);
+				setState(273);
 				match(STRING);
 				}
 				break;
@@ -1927,12 +1906,12 @@ public class PaPyParser extends Parser {
 
 	public final NumberContext number() throws RecognitionException {
 		NumberContext _localctx = new NumberContext(_ctx, getState());
-		enterRule(_localctx, 46, RULE_number);
+		enterRule(_localctx, 48, RULE_number);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(293);
+			setState(276);
 			_la = _input.LA(1);
 			if ( !(_la==INT || _la==FLOAT) ) {
 			_errHandler.recoverInline(this);
@@ -1971,12 +1950,12 @@ public class PaPyParser extends Parser {
 
 	public final LogicalValueContext logicalValue() throws RecognitionException {
 		LogicalValueContext _localctx = new LogicalValueContext(_ctx, getState());
-		enterRule(_localctx, 48, RULE_logicalValue);
+		enterRule(_localctx, 50, RULE_logicalValue);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(295);
+			setState(278);
 			_la = _input.LA(1);
 			if ( !(_la==TRUE || _la==FALSE) ) {
 			_errHandler.recoverInline(this);
@@ -2017,12 +1996,12 @@ public class PaPyParser extends Parser {
 
 	public final TypeContext type() throws RecognitionException {
 		TypeContext _localctx = new TypeContext(_ctx, getState());
-		enterRule(_localctx, 50, RULE_type);
+		enterRule(_localctx, 52, RULE_type);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(297);
+			setState(280);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INT_TYPE) | (1L << FLOAT_TYPE) | (1L << BOOL_TYPE) | (1L << STRING_TYPE))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -2047,10 +2026,8 @@ public class PaPyParser extends Parser {
 
 	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
 		switch (ruleIndex) {
-		case 3:
-			return arithmeticExpression_sempred((ArithmeticExpressionContext)_localctx, predIndex);
 		case 4:
-			return term_sempred((TermContext)_localctx, predIndex);
+			return arithmeticExpression_sempred((ArithmeticExpressionContext)_localctx, predIndex);
 		case 5:
 			return logicalExpression_sempred((LogicalExpressionContext)_localctx, predIndex);
 		case 6:
@@ -2063,143 +2040,134 @@ public class PaPyParser extends Parser {
 	private boolean arithmeticExpression_sempred(ArithmeticExpressionContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return precpred(_ctx, 1);
-		}
-		return true;
-	}
-	private boolean term_sempred(TermContext _localctx, int predIndex) {
-		switch (predIndex) {
+			return precpred(_ctx, 5);
 		case 1:
-			return precpred(_ctx, 1);
+			return precpred(_ctx, 4);
+		case 2:
+			return precpred(_ctx, 3);
+		case 3:
+			return precpred(_ctx, 2);
 		}
 		return true;
 	}
 	private boolean logicalExpression_sempred(LogicalExpressionContext _localctx, int predIndex) {
-		switch (predIndex) {
-		case 2:
-			return precpred(_ctx, 1);
-		}
-		return true;
-	}
-	private boolean logicalAnd_sempred(LogicalAndContext _localctx, int predIndex) {
-		switch (predIndex) {
-		case 3:
-			return precpred(_ctx, 1);
-		}
-		return true;
-	}
-	private boolean logicalResult_sempred(LogicalResultContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 4:
 			return precpred(_ctx, 1);
 		}
 		return true;
 	}
+	private boolean logicalAnd_sempred(LogicalAndContext _localctx, int predIndex) {
+		switch (predIndex) {
+		case 5:
+			return precpred(_ctx, 1);
+		}
+		return true;
+	}
+	private boolean logicalResult_sempred(LogicalResultContext _localctx, int predIndex) {
+		switch (predIndex) {
+		case 6:
+			return precpred(_ctx, 1);
+		}
+		return true;
+	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\61\u012e\4\2\t\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\61\u011d\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
-		"\4\32\t\32\4\33\t\33\3\2\3\2\3\2\7\2:\n\2\f\2\16\2=\13\2\3\2\3\2\3\3\3"+
-		"\3\3\3\3\3\3\3\5\3F\n\3\3\3\3\3\3\4\3\4\5\4L\n\4\3\5\3\5\3\5\3\5\3\5\3"+
-		"\5\7\5T\n\5\f\5\16\5W\13\5\3\6\3\6\3\6\3\6\3\6\3\6\5\6_\n\6\3\6\3\6\3"+
-		"\6\7\6d\n\6\f\6\16\6g\13\6\3\7\3\7\3\7\3\7\3\7\3\7\7\7o\n\7\f\7\16\7r"+
-		"\13\7\3\b\3\b\3\b\3\b\3\b\3\b\7\bz\n\b\f\b\16\b}\13\b\3\t\3\t\3\t\5\t"+
-		"\u0082\n\t\3\n\3\n\3\n\3\n\3\n\3\n\5\n\u008a\n\n\3\n\3\n\3\n\7\n\u008f"+
-		"\n\n\f\n\16\n\u0092\13\n\3\13\3\13\3\13\3\13\3\13\3\13\5\13\u009a\n\13"+
-		"\3\f\3\f\5\f\u009e\n\f\3\r\3\r\3\r\3\r\3\r\3\r\3\16\3\16\3\16\3\16\3\16"+
+		"\4\32\t\32\4\33\t\33\4\34\t\34\3\2\7\2:\n\2\f\2\16\2=\13\2\3\2\3\2\3\3"+
+		"\3\3\3\3\5\3D\n\3\3\4\3\4\3\4\3\4\3\4\5\4K\n\4\3\4\3\4\3\5\3\5\3\5\5\5"+
+		"R\n\5\3\6\3\6\3\6\3\6\3\6\3\6\5\6Z\n\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6"+
+		"\3\6\3\6\3\6\3\6\7\6h\n\6\f\6\16\6k\13\6\3\7\3\7\3\7\3\7\3\7\3\7\7\7s"+
+		"\n\7\f\7\16\7v\13\7\3\b\3\b\3\b\3\b\3\b\3\b\7\b~\n\b\f\b\16\b\u0081\13"+
+		"\b\3\t\3\t\3\t\5\t\u0086\n\t\3\n\3\n\3\n\3\n\3\n\3\n\5\n\u008e\n\n\3\n"+
+		"\3\n\3\n\7\n\u0093\n\n\f\n\16\n\u0096\13\n\3\13\3\13\3\13\3\13\3\13\3"+
+		"\f\3\f\5\f\u009f\n\f\3\r\3\r\3\r\3\r\3\r\3\r\3\16\3\16\3\16\3\16\3\16"+
 		"\3\16\3\16\3\17\3\17\3\17\3\17\3\17\3\17\3\20\3\20\3\20\3\20\3\20\3\20"+
-		"\3\20\3\20\5\20\u00bb\n\20\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\21\5\21"+
-		"\u00c5\n\21\3\22\3\22\3\22\3\22\3\23\5\23\u00cc\n\23\3\23\3\23\3\23\7"+
-		"\23\u00d1\n\23\f\23\16\23\u00d4\13\23\3\23\3\23\3\24\3\24\3\24\3\24\3"+
-		"\24\3\24\3\24\3\24\3\24\7\24\u00e1\n\24\f\24\16\24\u00e4\13\24\5\24\u00e6"+
-		"\n\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24"+
-		"\3\24\7\24\u00f6\n\24\f\24\16\24\u00f9\13\24\5\24\u00fb\n\24\3\24\3\24"+
-		"\5\24\u00ff\n\24\3\25\5\25\u0102\n\25\3\25\3\25\3\25\7\25\u0107\n\25\f"+
-		"\25\16\25\u010a\13\25\3\25\3\25\3\25\3\25\5\25\u0110\n\25\3\26\3\26\3"+
-		"\26\5\26\u0115\n\26\3\26\3\26\3\27\3\27\3\27\7\27\u011c\n\27\f\27\16\27"+
-		"\u011f\13\27\3\30\3\30\3\30\3\30\3\30\5\30\u0126\n\30\3\31\3\31\3\32\3"+
-		"\32\3\33\3\33\3\33\2\7\b\n\f\16\22\34\2\4\6\b\n\f\16\20\22\24\26\30\32"+
-		"\34\36 \"$&(*,.\60\62\64\2\b\3\2\32\33\4\2\31\31\34\34\3\2\37$\3\2\13"+
-		"\f\3\2()\3\2\16\21\2\u013e\2;\3\2\2\2\4E\3\2\2\2\6K\3\2\2\2\bM\3\2\2\2"+
-		"\n^\3\2\2\2\fh\3\2\2\2\16s\3\2\2\2\20\u0081\3\2\2\2\22\u0089\3\2\2\2\24"+
-		"\u0093\3\2\2\2\26\u009d\3\2\2\2\30\u009f\3\2\2\2\32\u00a5\3\2\2\2\34\u00ac"+
-		"\3\2\2\2\36\u00b2\3\2\2\2 \u00bc\3\2\2\2\"\u00c6\3\2\2\2$\u00cb\3\2\2"+
-		"\2&\u00fe\3\2\2\2(\u0101\3\2\2\2*\u0111\3\2\2\2,\u0118\3\2\2\2.\u0125"+
-		"\3\2\2\2\60\u0127\3\2\2\2\62\u0129\3\2\2\2\64\u012b\3\2\2\2\66:\5\4\3"+
-		"\2\67:\7\3\2\28:\5&\24\29\66\3\2\2\29\67\3\2\2\298\3\2\2\2:=\3\2\2\2;"+
-		"9\3\2\2\2;<\3\2\2\2<>\3\2\2\2=;\3\2\2\2>?\7\2\2\3?\3\3\2\2\2@F\5\6\4\2"+
-		"AF\5\24\13\2BF\5\26\f\2CF\5*\26\2DF\5\36\20\2E@\3\2\2\2EA\3\2\2\2EB\3"+
-		"\2\2\2EC\3\2\2\2ED\3\2\2\2FG\3\2\2\2GH\7\3\2\2H\5\3\2\2\2IL\5\b\5\2JL"+
-		"\5\f\7\2KI\3\2\2\2KJ\3\2\2\2L\7\3\2\2\2MN\b\5\1\2NO\5\n\6\2OU\3\2\2\2"+
-		"PQ\f\3\2\2QR\t\2\2\2RT\5\b\5\4SP\3\2\2\2TW\3\2\2\2US\3\2\2\2UV\3\2\2\2"+
-		"V\t\3\2\2\2WU\3\2\2\2X_\b\6\1\2YZ\7\7\2\2Z[\5\b\5\2[\\\7\b\2\2\\_\3\2"+
-		"\2\2]_\5.\30\2^X\3\2\2\2^Y\3\2\2\2^]\3\2\2\2_e\3\2\2\2`a\f\3\2\2ab\t\3"+
-		"\2\2bd\5\n\6\4c`\3\2\2\2dg\3\2\2\2ec\3\2\2\2ef\3\2\2\2f\13\3\2\2\2ge\3"+
-		"\2\2\2hi\b\7\1\2ij\5\16\b\2jp\3\2\2\2kl\f\3\2\2lm\7&\2\2mo\5\f\7\4nk\3"+
-		"\2\2\2or\3\2\2\2pn\3\2\2\2pq\3\2\2\2q\r\3\2\2\2rp\3\2\2\2st\b\b\1\2tu"+
-		"\5\20\t\2u{\3\2\2\2vw\f\3\2\2wx\7%\2\2xz\5\16\b\4yv\3\2\2\2z}\3\2\2\2"+
-		"{y\3\2\2\2{|\3\2\2\2|\17\3\2\2\2}{\3\2\2\2~\u0082\5\22\n\2\177\u0080\7"+
-		"\'\2\2\u0080\u0082\5\20\t\2\u0081~\3\2\2\2\u0081\177\3\2\2\2\u0082\21"+
-		"\3\2\2\2\u0083\u0084\b\n\1\2\u0084\u0085\7\7\2\2\u0085\u0086\5\f\7\2\u0086"+
-		"\u0087\7\b\2\2\u0087\u008a\3\2\2\2\u0088\u008a\5.\30\2\u0089\u0083\3\2"+
-		"\2\2\u0089\u0088\3\2\2\2\u008a\u0090\3\2\2\2\u008b\u008c\f\3\2\2\u008c"+
-		"\u008d\t\4\2\2\u008d\u008f\5\22\n\4\u008e\u008b\3\2\2\2\u008f\u0092\3"+
-		"\2\2\2\u0090\u008e\3\2\2\2\u0090\u0091\3\2\2\2\u0091\23\3\2\2\2\u0092"+
-		"\u0090\3\2\2\2\u0093\u0094\5\64\33\2\u0094\u0095\7\61\2\2\u0095\u0099"+
-		"\7\36\2\2\u0096\u009a\5.\30\2\u0097\u009a\5\b\5\2\u0098\u009a\5\f\7\2"+
-		"\u0099\u0096\3\2\2\2\u0099\u0097\3\2\2\2\u0099\u0098\3\2\2\2\u009a\25"+
-		"\3\2\2\2\u009b\u009e\5\30\r\2\u009c\u009e\5\34\17\2\u009d\u009b\3\2\2"+
-		"\2\u009d\u009c\3\2\2\2\u009e\27\3\2\2\2\u009f\u00a0\7\23\2\2\u00a0\u00a1"+
-		"\7\61\2\2\u00a1\u00a2\7\24\2\2\u00a2\u00a3\5\32\16\2\u00a3\u00a4\5$\23"+
-		"\2\u00a4\31\3\2\2\2\u00a5\u00a6\7\7\2\2\u00a6\u00a7\7\13\2\2\u00a7\u00a8"+
-		"\7.\2\2\u00a8\u00a9\7.\2\2\u00a9\u00aa\7\13\2\2\u00aa\u00ab\7\b\2\2\u00ab"+
-		"\33\3\2\2\2\u00ac\u00ad\7\25\2\2\u00ad\u00ae\7\7\2\2\u00ae\u00af\5\f\7"+
-		"\2\u00af\u00b0\7\b\2\2\u00b0\u00b1\5$\23\2\u00b1\35\3\2\2\2\u00b2\u00b3"+
-		"\7\26\2\2\u00b3\u00b4\7\7\2\2\u00b4\u00b5\5\6\4\2\u00b5\u00b6\7\b\2\2"+
-		"\u00b6\u00ba\5$\23\2\u00b7\u00bb\7\4\2\2\u00b8\u00bb\5 \21\2\u00b9\u00bb"+
-		"\5\"\22\2\u00ba\u00b7\3\2\2\2\u00ba\u00b8\3\2\2\2\u00ba\u00b9\3\2\2\2"+
-		"\u00bb\37\3\2\2\2\u00bc\u00bd\7\30\2\2\u00bd\u00be\7\7\2\2\u00be\u00bf"+
-		"\5\6\4\2\u00bf\u00c0\7\b\2\2\u00c0\u00c4\5$\23\2\u00c1\u00c5\7\4\2\2\u00c2"+
-		"\u00c5\5 \21\2\u00c3\u00c5\5\"\22\2\u00c4\u00c1\3\2\2\2\u00c4\u00c2\3"+
-		"\2\2\2\u00c4\u00c3\3\2\2\2\u00c5!\3\2\2\2\u00c6\u00c7\7\27\2\2\u00c7\u00c8"+
-		"\5$\23\2\u00c8\u00c9\7\4\2\2\u00c9#\3\2\2\2\u00ca\u00cc\7\3\2\2\u00cb"+
-		"\u00ca\3\2\2\2\u00cb\u00cc\3\2\2\2\u00cc\u00cd\3\2\2\2\u00cd\u00d2\7\5"+
-		"\2\2\u00ce\u00d1\5\4\3\2\u00cf\u00d1\7\4\2\2\u00d0\u00ce\3\2\2\2\u00d0"+
-		"\u00cf\3\2\2\2\u00d1\u00d4\3\2\2\2\u00d2\u00d0\3\2\2\2\u00d2\u00d3\3\2"+
-		"\2\2\u00d3\u00d5\3\2\2\2\u00d4\u00d2\3\2\2\2\u00d5\u00d6\7\6\2\2\u00d6"+
-		"%\3\2\2\2\u00d7\u00d8\7*\2\2\u00d8\u00d9\7\61\2\2\u00d9\u00e5\7\7\2\2"+
-		"\u00da\u00db\5\64\33\2\u00db\u00e2\7\61\2\2\u00dc\u00dd\7-\2\2\u00dd\u00de"+
-		"\5\64\33\2\u00de\u00df\7\61\2\2\u00df\u00e1\3\2\2\2\u00e0\u00dc\3\2\2"+
-		"\2\u00e1\u00e4\3\2\2\2\u00e2\u00e0\3\2\2\2\u00e2\u00e3\3\2\2\2\u00e3\u00e6"+
-		"\3\2\2\2\u00e4\u00e2\3\2\2\2\u00e5\u00da\3\2\2\2\u00e5\u00e6\3\2\2\2\u00e6"+
-		"\u00e7\3\2\2\2\u00e7\u00e8\7\b\2\2\u00e8\u00e9\7+\2\2\u00e9\u00ea\5\64"+
-		"\33\2\u00ea\u00eb\5(\25\2\u00eb\u00ff\3\2\2\2\u00ec\u00ed\7*\2\2\u00ed"+
-		"\u00ee\7\61\2\2\u00ee\u00fa\7\7\2\2\u00ef\u00f0\5\64\33\2\u00f0\u00f7"+
-		"\7\61\2\2\u00f1\u00f2\7-\2\2\u00f2\u00f3\5\64\33\2\u00f3\u00f4\7\61\2"+
-		"\2\u00f4\u00f6\3\2\2\2\u00f5\u00f1\3\2\2\2\u00f6\u00f9\3\2\2\2\u00f7\u00f5"+
-		"\3\2\2\2\u00f7\u00f8\3\2\2\2\u00f8\u00fb\3\2\2\2\u00f9\u00f7\3\2\2\2\u00fa"+
-		"\u00ef\3\2\2\2\u00fa\u00fb\3\2\2\2\u00fb\u00fc\3\2\2\2\u00fc\u00fd\7\b"+
-		"\2\2\u00fd\u00ff\5$\23\2\u00fe\u00d7\3\2\2\2\u00fe\u00ec\3\2\2\2\u00ff"+
-		"\'\3\2\2\2\u0100\u0102\7\3\2\2\u0101\u0100\3\2\2\2\u0101\u0102\3\2\2\2"+
-		"\u0102\u0103\3\2\2\2\u0103\u0108\7\5\2\2\u0104\u0107\5\4\3\2\u0105\u0107"+
-		"\7\4\2\2\u0106\u0104\3\2\2\2\u0106\u0105\3\2\2\2\u0107\u010a\3\2\2\2\u0108"+
-		"\u0106\3\2\2\2\u0108\u0109\3\2\2\2\u0109\u010b\3\2\2\2\u010a\u0108\3\2"+
-		"\2\2\u010b\u010f\7,\2\2\u010c\u0110\5.\30\2\u010d\u0110\5\6\4\2\u010e"+
-		"\u0110\7\61\2\2\u010f\u010c\3\2\2\2\u010f\u010d\3\2\2\2\u010f\u010e\3"+
-		"\2\2\2\u0110)\3\2\2\2\u0111\u0112\7\61\2\2\u0112\u0114\7\7\2\2\u0113\u0115"+
-		"\5,\27\2\u0114\u0113\3\2\2\2\u0114\u0115\3\2\2\2\u0115\u0116\3\2\2\2\u0116"+
-		"\u0117\7\b\2\2\u0117+\3\2\2\2\u0118\u011d\5.\30\2\u0119\u011a\7-\2\2\u011a"+
-		"\u011c\5.\30\2\u011b\u0119\3\2\2\2\u011c\u011f\3\2\2\2\u011d\u011b\3\2"+
-		"\2\2\u011d\u011e\3\2\2\2\u011e-\3\2\2\2\u011f\u011d\3\2\2\2\u0120\u0126"+
-		"\5\60\31\2\u0121\u0126\5*\26\2\u0122\u0126\7\61\2\2\u0123\u0126\5\62\32"+
-		"\2\u0124\u0126\7\r\2\2\u0125\u0120\3\2\2\2\u0125\u0121\3\2\2\2\u0125\u0122"+
-		"\3\2\2\2\u0125\u0123\3\2\2\2\u0125\u0124\3\2\2\2\u0126/\3\2\2\2\u0127"+
-		"\u0128\t\5\2\2\u0128\61\3\2\2\2\u0129\u012a\t\6\2\2\u012a\63\3\2\2\2\u012b"+
-		"\u012c\t\7\2\2\u012c\65\3\2\2\2!9;EKU^ep{\u0081\u0089\u0090\u0099\u009d"+
-		"\u00ba\u00c4\u00cb\u00d0\u00d2\u00e2\u00e5\u00f7\u00fa\u00fe\u0101\u0106"+
-		"\u0108\u010f\u0114\u011d\u0125";
+		"\3\20\3\20\5\20\u00bc\n\20\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\21\5\21"+
+		"\u00c6\n\21\3\22\3\22\3\22\3\22\3\23\5\23\u00cd\n\23\3\23\3\23\3\23\7"+
+		"\23\u00d2\n\23\f\23\16\23\u00d5\13\23\3\23\3\23\3\24\3\24\3\24\3\24\3"+
+		"\24\3\24\7\24\u00df\n\24\f\24\16\24\u00e2\13\24\5\24\u00e4\n\24\3\24\3"+
+		"\24\3\24\5\24\u00e9\n\24\3\24\3\24\3\25\3\25\3\25\3\26\5\26\u00f1\n\26"+
+		"\3\26\3\26\3\26\7\26\u00f6\n\26\f\26\16\26\u00f9\13\26\3\26\3\26\5\26"+
+		"\u00fd\n\26\3\26\3\26\3\27\3\27\3\27\5\27\u0104\n\27\3\27\3\27\3\30\3"+
+		"\30\3\30\7\30\u010b\n\30\f\30\16\30\u010e\13\30\3\31\3\31\3\31\3\31\3"+
+		"\31\5\31\u0115\n\31\3\32\3\32\3\33\3\33\3\34\3\34\3\34\2\6\n\f\16\22\35"+
+		"\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\66\2\6\3\2\37"+
+		"$\3\2\13\f\3\2()\3\2\16\21\2\u0129\2;\3\2\2\2\4C\3\2\2\2\6J\3\2\2\2\b"+
+		"Q\3\2\2\2\nY\3\2\2\2\fl\3\2\2\2\16w\3\2\2\2\20\u0085\3\2\2\2\22\u008d"+
+		"\3\2\2\2\24\u0097\3\2\2\2\26\u009e\3\2\2\2\30\u00a0\3\2\2\2\32\u00a6\3"+
+		"\2\2\2\34\u00ad\3\2\2\2\36\u00b3\3\2\2\2 \u00bd\3\2\2\2\"\u00c7\3\2\2"+
+		"\2$\u00cc\3\2\2\2&\u00d8\3\2\2\2(\u00ec\3\2\2\2*\u00f0\3\2\2\2,\u0100"+
+		"\3\2\2\2.\u0107\3\2\2\2\60\u0114\3\2\2\2\62\u0116\3\2\2\2\64\u0118\3\2"+
+		"\2\2\66\u011a\3\2\2\28:\5\4\3\298\3\2\2\2:=\3\2\2\2;9\3\2\2\2;<\3\2\2"+
+		"\2<>\3\2\2\2=;\3\2\2\2>?\7\2\2\3?\3\3\2\2\2@D\5\6\4\2AD\5&\24\2BD\7\3"+
+		"\2\2C@\3\2\2\2CA\3\2\2\2CB\3\2\2\2D\5\3\2\2\2EK\5\b\5\2FK\5\24\13\2GK"+
+		"\5\26\f\2HK\5,\27\2IK\5\36\20\2JE\3\2\2\2JF\3\2\2\2JG\3\2\2\2JH\3\2\2"+
+		"\2JI\3\2\2\2KL\3\2\2\2LM\7\3\2\2M\7\3\2\2\2NR\5\n\6\2OR\5\f\7\2PR\5\60"+
+		"\31\2QN\3\2\2\2QO\3\2\2\2QP\3\2\2\2R\t\3\2\2\2ST\b\6\1\2TU\7\7\2\2UV\5"+
+		"\n\6\2VW\7\b\2\2WZ\3\2\2\2XZ\5\60\31\2YS\3\2\2\2YX\3\2\2\2Zi\3\2\2\2["+
+		"\\\f\7\2\2\\]\7\31\2\2]h\5\n\6\b^_\f\6\2\2_`\7\34\2\2`h\5\n\6\7ab\f\5"+
+		"\2\2bc\7\32\2\2ch\5\n\6\6de\f\4\2\2ef\7\33\2\2fh\5\n\6\5g[\3\2\2\2g^\3"+
+		"\2\2\2ga\3\2\2\2gd\3\2\2\2hk\3\2\2\2ig\3\2\2\2ij\3\2\2\2j\13\3\2\2\2k"+
+		"i\3\2\2\2lm\b\7\1\2mn\5\16\b\2nt\3\2\2\2op\f\3\2\2pq\7&\2\2qs\5\f\7\4"+
+		"ro\3\2\2\2sv\3\2\2\2tr\3\2\2\2tu\3\2\2\2u\r\3\2\2\2vt\3\2\2\2wx\b\b\1"+
+		"\2xy\5\20\t\2y\177\3\2\2\2z{\f\3\2\2{|\7%\2\2|~\5\16\b\4}z\3\2\2\2~\u0081"+
+		"\3\2\2\2\177}\3\2\2\2\177\u0080\3\2\2\2\u0080\17\3\2\2\2\u0081\177\3\2"+
+		"\2\2\u0082\u0086\5\22\n\2\u0083\u0084\7\'\2\2\u0084\u0086\5\20\t\2\u0085"+
+		"\u0082\3\2\2\2\u0085\u0083\3\2\2\2\u0086\21\3\2\2\2\u0087\u0088\b\n\1"+
+		"\2\u0088\u0089\7\7\2\2\u0089\u008a\5\f\7\2\u008a\u008b\7\b\2\2\u008b\u008e"+
+		"\3\2\2\2\u008c\u008e\5\60\31\2\u008d\u0087\3\2\2\2\u008d\u008c\3\2\2\2"+
+		"\u008e\u0094\3\2\2\2\u008f\u0090\f\3\2\2\u0090\u0091\t\2\2\2\u0091\u0093"+
+		"\5\22\n\4\u0092\u008f\3\2\2\2\u0093\u0096\3\2\2\2\u0094\u0092\3\2\2\2"+
+		"\u0094\u0095\3\2\2\2\u0095\23\3\2\2\2\u0096\u0094\3\2\2\2\u0097\u0098"+
+		"\5\66\34\2\u0098\u0099\7\61\2\2\u0099\u009a\7\36\2\2\u009a\u009b\5\b\5"+
+		"\2\u009b\25\3\2\2\2\u009c\u009f\5\30\r\2\u009d\u009f\5\34\17\2\u009e\u009c"+
+		"\3\2\2\2\u009e\u009d\3\2\2\2\u009f\27\3\2\2\2\u00a0\u00a1\7\23\2\2\u00a1"+
+		"\u00a2\7\61\2\2\u00a2\u00a3\7\24\2\2\u00a3\u00a4\5\32\16\2\u00a4\u00a5"+
+		"\5$\23\2\u00a5\31\3\2\2\2\u00a6\u00a7\7\7\2\2\u00a7\u00a8\7\13\2\2\u00a8"+
+		"\u00a9\7.\2\2\u00a9\u00aa\7.\2\2\u00aa\u00ab\7\13\2\2\u00ab\u00ac\7\b"+
+		"\2\2\u00ac\33\3\2\2\2\u00ad\u00ae\7\25\2\2\u00ae\u00af\7\7\2\2\u00af\u00b0"+
+		"\5\f\7\2\u00b0\u00b1\7\b\2\2\u00b1\u00b2\5$\23\2\u00b2\35\3\2\2\2\u00b3"+
+		"\u00b4\7\26\2\2\u00b4\u00b5\7\7\2\2\u00b5\u00b6\5\b\5\2\u00b6\u00b7\7"+
+		"\b\2\2\u00b7\u00bb\5$\23\2\u00b8\u00bc\7\4\2\2\u00b9\u00bc\5 \21\2\u00ba"+
+		"\u00bc\5\"\22\2\u00bb\u00b8\3\2\2\2\u00bb\u00b9\3\2\2\2\u00bb\u00ba\3"+
+		"\2\2\2\u00bc\37\3\2\2\2\u00bd\u00be\7\30\2\2\u00be\u00bf\7\7\2\2\u00bf"+
+		"\u00c0\5\b\5\2\u00c0\u00c1\7\b\2\2\u00c1\u00c5\5$\23\2\u00c2\u00c6\7\4"+
+		"\2\2\u00c3\u00c6\5 \21\2\u00c4\u00c6\5\"\22\2\u00c5\u00c2\3\2\2\2\u00c5"+
+		"\u00c3\3\2\2\2\u00c5\u00c4\3\2\2\2\u00c6!\3\2\2\2\u00c7\u00c8\7\27\2\2"+
+		"\u00c8\u00c9\5$\23\2\u00c9\u00ca\7\4\2\2\u00ca#\3\2\2\2\u00cb\u00cd\7"+
+		"\3\2\2\u00cc\u00cb\3\2\2\2\u00cc\u00cd\3\2\2\2\u00cd\u00ce\3\2\2\2\u00ce"+
+		"\u00d3\7\5\2\2\u00cf\u00d2\5\6\4\2\u00d0\u00d2\7\4\2\2\u00d1\u00cf\3\2"+
+		"\2\2\u00d1\u00d0\3\2\2\2\u00d2\u00d5\3\2\2\2\u00d3\u00d1\3\2\2\2\u00d3"+
+		"\u00d4\3\2\2\2\u00d4\u00d6\3\2\2\2\u00d5\u00d3\3\2\2\2\u00d6\u00d7\7\6"+
+		"\2\2\u00d7%\3\2\2\2\u00d8\u00d9\7*\2\2\u00d9\u00da\7\61\2\2\u00da\u00e3"+
+		"\7\7\2\2\u00db\u00e0\5(\25\2\u00dc\u00dd\7-\2\2\u00dd\u00df\5(\25\2\u00de"+
+		"\u00dc\3\2\2\2\u00df\u00e2\3\2\2\2\u00e0\u00de\3\2\2\2\u00e0\u00e1\3\2"+
+		"\2\2\u00e1\u00e4\3\2\2\2\u00e2\u00e0\3\2\2\2\u00e3\u00db\3\2\2\2\u00e3"+
+		"\u00e4\3\2\2\2\u00e4\u00e5\3\2\2\2\u00e5\u00e8\7\b\2\2\u00e6\u00e7\7+"+
+		"\2\2\u00e7\u00e9\5\66\34\2\u00e8\u00e6\3\2\2\2\u00e8\u00e9\3\2\2\2\u00e9"+
+		"\u00ea\3\2\2\2\u00ea\u00eb\5*\26\2\u00eb\'\3\2\2\2\u00ec\u00ed\5\66\34"+
+		"\2\u00ed\u00ee\7\61\2\2\u00ee)\3\2\2\2\u00ef\u00f1\7\3\2\2\u00f0\u00ef"+
+		"\3\2\2\2\u00f0\u00f1\3\2\2\2\u00f1\u00f2\3\2\2\2\u00f2\u00f7\7\5\2\2\u00f3"+
+		"\u00f6\5\6\4\2\u00f4\u00f6\7\4\2\2\u00f5\u00f3\3\2\2\2\u00f5\u00f4\3\2"+
+		"\2\2\u00f6\u00f9\3\2\2\2\u00f7\u00f5\3\2\2\2\u00f7\u00f8\3\2\2\2\u00f8"+
+		"\u00fc\3\2\2\2\u00f9\u00f7\3\2\2\2\u00fa\u00fb\7,\2\2\u00fb\u00fd\5\b"+
+		"\5\2\u00fc\u00fa\3\2\2\2\u00fc\u00fd\3\2\2\2\u00fd\u00fe\3\2\2\2\u00fe"+
+		"\u00ff\7\6\2\2\u00ff+\3\2\2\2\u0100\u0101\7\61\2\2\u0101\u0103\7\7\2\2"+
+		"\u0102\u0104\5.\30\2\u0103\u0102\3\2\2\2\u0103\u0104\3\2\2\2\u0104\u0105"+
+		"\3\2\2\2\u0105\u0106\7\b\2\2\u0106-\3\2\2\2\u0107\u010c\5\60\31\2\u0108"+
+		"\u0109\7-\2\2\u0109\u010b\5\60\31\2\u010a\u0108\3\2\2\2\u010b\u010e\3"+
+		"\2\2\2\u010c\u010a\3\2\2\2\u010c\u010d\3\2\2\2\u010d/\3\2\2\2\u010e\u010c"+
+		"\3\2\2\2\u010f\u0115\5\62\32\2\u0110\u0115\5,\27\2\u0111\u0115\7\61\2"+
+		"\2\u0112\u0115\5\64\33\2\u0113\u0115\7\r\2\2\u0114\u010f\3\2\2\2\u0114"+
+		"\u0110\3\2\2\2\u0114\u0111\3\2\2\2\u0114\u0112\3\2\2\2\u0114\u0113\3\2"+
+		"\2\2\u0115\61\3\2\2\2\u0116\u0117\t\3\2\2\u0117\63\3\2\2\2\u0118\u0119"+
+		"\t\4\2\2\u0119\65\3\2\2\2\u011a\u011b\t\5\2\2\u011b\67\3\2\2\2\36;CJQ"+
+		"Ygit\177\u0085\u008d\u0094\u009e\u00bb\u00c5\u00cc\u00d1\u00d3\u00e0\u00e3"+
+		"\u00e8\u00f0\u00f5\u00f7\u00fc\u0103\u010c\u0114";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

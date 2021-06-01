@@ -54,65 +54,88 @@ TAB: '\t';
 SPACES: [ ]+ -> skip; // https://stackoverflow.com/questions/15503561/antlr4-whitespace-handling
 IDENTIFIER: [a-zA-Z][a-zA-Z0-9_]*;
 // --- RULES ---
-program: (statement|NL|functionDeclaration)* EOF;
+
+program: section* EOF;
+
+section:
+    statement
+    | functionDeclaration
+    | NL;
+
 statement:
   (expression
   | variableDeclaration
   | loopStatement
   | funcCall
   | ifStatement) NL;
+
 expression:
   arithmeticExpression
   | logicalExpression
   | value;
+
 arithmeticExpression:
-  term
-  | arithmeticExpression (ADD|SUB) arithmeticExpression;
-term:
-  | LPAR arithmeticExpression RPAR
-  | value
-  | term (MUL|DIV) term;
+     LPAR arithmeticExpression RPAR
+     | arithmeticExpression MUL arithmeticExpression
+     | arithmeticExpression DIV arithmeticExpression
+     | arithmeticExpression ADD arithmeticExpression
+     | arithmeticExpression SUB arithmeticExpression
+     | value;
+
 logicalExpression:
   logicalAnd
   | logicalExpression OR logicalExpression;
+
 logicalAnd:
   logicalTerm
   | logicalAnd AND logicalAnd;
+
 logicalTerm:
   logicalResult
   | NOT logicalTerm;
+
 logicalResult:
   LPAR logicalExpression RPAR
   | value
   | logicalResult (EQ|NEQ|GTE|LTE|GT|LT) logicalResult;
+
 variableDeclaration:
   type IDENTIFIER ASSIGN expression;
+
 loopStatement:
   forStatement
   | whileStatement;
+
 forStatement:
   FOR IDENTIFIER IN range block;
+
 range:
   LPAR INT DOT DOT INT RPAR;
+
 whileStatement:
   WHILE LPAR logicalExpression RPAR block;
+
 ifStatement:
   IF LPAR expression RPAR block (EMPTY_LINE|elifStatement|elseStatement);
+
 elifStatement:
   ELIF LPAR expression RPAR block (EMPTY_LINE|elifStatement|elseStatement);
+
 elseStatement:
   ELSE block EMPTY_LINE;
+
 block:
   NL? LBR (statement|EMPTY_LINE)* RBR;
+
 functionDeclaration:
-  DEF IDENTIFIER LPAR (functionDeclarationArgument (COMMA functionDeclarationArgument)*)? RPAR RET type returnBlock
-  | DEF IDENTIFIER LPAR (functionDeclarationArgument (COMMA functionDeclarationArgument)*)? RPAR block;
+  DEF IDENTIFIER LPAR (functionDeclarationArgument (COMMA functionDeclarationArgument)*)? RPAR (RET type)? functionBlock;
 
 functionDeclarationArgument:
     type IDENTIFIER;
 
-returnBlock:
-  NL? LBR (statement|EMPTY_LINE)* RETURN (value|expression|IDENTIFIER);
+functionBlock:
+  NL? LBR (statement|EMPTY_LINE)* (RETURN expression)? RBR;
+
 funcCall:
   IDENTIFIER LPAR argList? RPAR;
 
