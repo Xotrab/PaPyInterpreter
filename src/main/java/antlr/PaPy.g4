@@ -15,7 +15,7 @@ LSQBR: '[';
 RSQBR: ']';
 INT: '0' | [1-9][0-9]*;
 FLOAT: INT DOT INT;
-SCIENTIFIC: FLOAT 'E'[+-]? INT;
+//SCIENTIFIC: FLOAT 'E'[+-]? INT;
 STRING: '"' ~["]* '"';
 INT_TYPE: 'int';
 FLOAT_TYPE: 'float';
@@ -63,7 +63,8 @@ statement:
   | ifStatement) NL;
 expression:
   arithmeticExpression
-  | logicalExpression;
+  | logicalExpression
+  | value;
 arithmeticExpression:
   term
   | arithmeticExpression (ADD|SUB) arithmeticExpression;
@@ -85,8 +86,7 @@ logicalResult:
   | value
   | logicalResult (EQ|NEQ|GTE|LTE|GT|LT) logicalResult;
 variableDeclaration:
-  type IDENTIFIER ASSIGN (value | arithmeticExpression | logicalExpression)
-  | type LSQBR RSQBR IDENTIFIER ASSIGN listValue;
+  type IDENTIFIER ASSIGN expression;
 loopStatement:
   forStatement
   | whileStatement;
@@ -105,8 +105,12 @@ elseStatement:
 block:
   NL? LBR (statement|EMPTY_LINE)* RBR;
 functionDeclaration:
-  DEF IDENTIFIER LPAR (type IDENTIFIER (COMMA type IDENTIFIER)*)? RPAR RET type returnBlock
-  | DEF IDENTIFIER LPAR (type IDENTIFIER (COMMA type IDENTIFIER)*)? RPAR block;
+  DEF IDENTIFIER LPAR (functionDeclarationArgument (COMMA functionDeclarationArgument)*)? RPAR RET type returnBlock
+  | DEF IDENTIFIER LPAR (functionDeclarationArgument (COMMA functionDeclarationArgument)*)? RPAR block;
+
+functionDeclarationArgument:
+    type IDENTIFIER;
+
 returnBlock:
   NL? LBR (statement|EMPTY_LINE)* RETURN (value|expression|IDENTIFIER);
 funcCall:
@@ -114,29 +118,21 @@ funcCall:
 
 argList:
   value (COMMA value)*;
+
 value:
   number
   | funcCall
   | IDENTIFIER
   | logicalValue
-  | sequence
-  | listElementAt;
+  | STRING;
+
 number:
   FLOAT
-  | INT
-  | SCIENTIFIC;
+  | INT;
+ // | SCIENTIFIC;
 logicalValue:
   TRUE
   | FALSE;
-sequence:
-  STRING
-  | listValue;
-listValue:
-  LSQBR (value (COMMA value)*)? RSQBR;
-listElementAt:
-  IDENTIFIER LSQBR INT RSQBR;
-listRemoveAt:
-  IDENTIFIER REMOVE_AT INT;
 
 type:
   INT_TYPE

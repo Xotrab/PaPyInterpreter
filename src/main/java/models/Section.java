@@ -1,4 +1,5 @@
 package models;
 
-public class Section {
+public abstract class Section {
+
 }

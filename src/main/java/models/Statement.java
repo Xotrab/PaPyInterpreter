@@ -1,4 +1,4 @@
 package models;
 
-public class Statement {
+public abstract class Statement extends Section {
 }
