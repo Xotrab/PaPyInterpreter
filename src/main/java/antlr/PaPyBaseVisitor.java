@@ -1,5 +1,5 @@
-// Generated from PaPy.g4 by ANTLR 4.9.2
-package antlr;// Generated from PaPy.g4 by ANTLR 4.9.2
+// Generated from src\main\java\antlr\PaPy.g4 by ANTLR 4.9.2
+ package antlr;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
@@ -157,7 +157,7 @@ public class PaPyBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements P
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFunctionBlock(PaPyParser.FunctionBlockContext ctx) { return visitChildren(ctx); }
+	@Override public T visitReturnBlock(PaPyParser.ReturnBlockContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -3,6 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="39b930d9-dafc-4e20-98f5-35569aaafaf6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/antlr/PaPy.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/antlr/PaPy.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/antlr/PaPy.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/antlr/PaPy.interp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/antlr/PaPyBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/antlr/PaPyBaseVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/antlr/PaPyLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/antlr/PaPyLexer.interp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/antlr/PaPyLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/antlr/PaPyLexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/antlr/PaPyParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/antlr/PaPyParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/antlr/PaPyVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/antlr/PaPyVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/visitors/AntlrToExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/visitors/AntlrToExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/visitors/AntlrToSection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/visitors/AntlrToSection.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

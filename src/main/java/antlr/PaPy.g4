@@ -2,7 +2,7 @@
 // PaPy.g4
 
 grammar PaPy;
-
+@header { package antlr;}
 // --- TOKENS ---
 
 NL: '\r'?'\n';
@@ -82,21 +82,12 @@ arithmeticExpression:
      | value;
 
 logicalExpression:
-  logicalAnd
-  | logicalExpression OR logicalExpression;
-
-logicalAnd:
-  logicalTerm
-  | logicalAnd AND logicalAnd;
-
-logicalTerm:
-  logicalResult
-  | NOT logicalTerm;
-
-logicalResult:
-  LPAR logicalExpression RPAR
-  | value
-  | logicalResult (EQ|NEQ|GTE|LTE|GT|LT) logicalResult;
+  | LPAR logicalExpression RPAR
+  | NOT logicalExpression
+  | logicalExpression (EQ|NEQ|GTE|LTE|GT|LT) logicalExpression
+  | logicalExpression AND logicalExpression
+  | logicalExpression OR logicalExpression
+  | value;
 
 variableDeclaration:
   type IDENTIFIER ASSIGN expression;
@@ -124,16 +115,17 @@ elseStatement:
   ELSE block;
 
 block:
-  NL? LBR (statement|NL NL)* RBR;
+  NL? LBR (statement|NL)* RBR;
 
 functionDeclaration:
-  DEF IDENTIFIER LPAR (functionDeclarationArgument (COMMA functionDeclarationArgument)*)? RPAR (RET type)? functionBlock;
+  DEF IDENTIFIER LPAR (functionDeclarationArgument (COMMA functionDeclarationArgument)*)? RPAR RET type returnBlock
+  | DEF IDENTIFIER LPAR (functionDeclarationArgument (COMMA functionDeclarationArgument)*)? RPAR block;
 
 functionDeclarationArgument:
     type IDENTIFIER;
 
-functionBlock:
-  NL? LBR (statement|NL)* (RETURN expression NL?)? RBR;
+returnBlock:
+  NL? LBR (statement|NL)* (RETURN expression NL?) RBR;
 
 funcCall:
   IDENTIFIER LPAR argList? RPAR;

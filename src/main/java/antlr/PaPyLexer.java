@@ -1,5 +1,5 @@
-// Generated from PaPy.g4 by ANTLR 4.9.2
-package antlr;// Generated from PaPy.g4 by ANTLR 4.9.2
+// Generated from src\main\java\antlr\PaPy.g4 by ANTLR 4.9.2
+ package antlr;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;

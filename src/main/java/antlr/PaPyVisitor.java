@@ -1,4 +1,5 @@
-package antlr;// Generated from PaPy.g4 by ANTLR 4.9.2
+// Generated from src\main\java\antlr\PaPy.g4 by ANTLR 4.9.2
+ package antlr;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -130,11 +131,11 @@ public interface PaPyVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunctionDeclarationArgument(PaPyParser.FunctionDeclarationArgumentContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PaPyParser#functionBlock}.
+	 * Visit a parse tree produced by {@link PaPyParser#returnBlock}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunctionBlock(PaPyParser.FunctionBlockContext ctx);
+	T visitReturnBlock(PaPyParser.ReturnBlockContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PaPyParser#funcCall}.
 	 * @param ctx the parse tree
