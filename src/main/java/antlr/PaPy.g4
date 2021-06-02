@@ -74,12 +74,13 @@ expression:
   | value;
 
 arithmeticExpression:
-     LPAR arithmeticExpression RPAR
-     | arithmeticExpression MUL arithmeticExpression
-     | arithmeticExpression DIV arithmeticExpression
-     | arithmeticExpression ADD arithmeticExpression
-     | arithmeticExpression SUB arithmeticExpression
-     | value;
+     LPAR arithmeticExpression RPAR # arithmeticParentheses
+     | arithmeticExpression MUL arithmeticExpression # multiplication
+     | arithmeticExpression DIV arithmeticExpression # division
+     | arithmeticExpression ADD arithmeticExpression # addition
+     | arithmeticExpression SUB arithmeticExpression # subtraction
+     | value # airthmeticValue
+     ;
 
 logicalExpression:
   | LPAR logicalExpression RPAR

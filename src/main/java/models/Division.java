@@ -14,4 +14,9 @@ public class Division extends ArithmeticExpression {
     public String toString() {
         return left.toString() + " / " + right.toString();
     }
+
+    @Override
+    public Value evaluate() {
+        return null;
+    }
 }

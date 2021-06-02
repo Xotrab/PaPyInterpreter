@@ -35,35 +35,53 @@ public interface PaPyVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpression(PaPyParser.ExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PaPyParser#arithmeticExpression}.
+	 * Visit a parse tree produced by the {@code division}
+	 * labeled alternative in {@link PaPyParser#arithmeticExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitArithmeticExpression(PaPyParser.ArithmeticExpressionContext ctx);
+	T visitDivision(PaPyParser.DivisionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code arithmeticParentheses}
+	 * labeled alternative in {@link PaPyParser#arithmeticExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArithmeticParentheses(PaPyParser.ArithmeticParenthesesContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code airthmeticValue}
+	 * labeled alternative in {@link PaPyParser#arithmeticExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAirthmeticValue(PaPyParser.AirthmeticValueContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code subtraction}
+	 * labeled alternative in {@link PaPyParser#arithmeticExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSubtraction(PaPyParser.SubtractionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code multiplication}
+	 * labeled alternative in {@link PaPyParser#arithmeticExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMultiplication(PaPyParser.MultiplicationContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code addition}
+	 * labeled alternative in {@link PaPyParser#arithmeticExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAddition(PaPyParser.AdditionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PaPyParser#logicalExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitLogicalExpression(PaPyParser.LogicalExpressionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link PaPyParser#logicalAnd}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLogicalAnd(PaPyParser.LogicalAndContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link PaPyParser#logicalTerm}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLogicalTerm(PaPyParser.LogicalTermContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link PaPyParser#logicalResult}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLogicalResult(PaPyParser.LogicalResultContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PaPyParser#variableDeclaration}.
 	 * @param ctx the parse tree

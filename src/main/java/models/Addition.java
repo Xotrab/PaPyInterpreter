@@ -1,10 +1,10 @@
 package models;
 
 public class Addition extends ArithmeticExpression {
-    public ArithmeticExpression left;
-    public ArithmeticExpression right;
+    public Expression left;
+    public Expression right;
 
-    public Addition(ArithmeticExpression leftExpr, ArithmeticExpression rightExpr)
+    public Addition(Expression leftExpr, Expression rightExpr)
     {
         left = leftExpr;
         right = rightExpr;
@@ -13,5 +13,12 @@ public class Addition extends ArithmeticExpression {
     @Override
     public String toString() {
         return left.toString() + " + " + right.toString();
+    }
+
+    @Override
+    public Value evaluate() {
+        Value value = left.evaluate();
+        value.add(right.evaluate());
+        return value;
     }
 }
