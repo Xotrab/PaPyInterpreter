@@ -2,7 +2,7 @@ package models;
 
 import java.util.List;
 
-public class IntegerNumber extends Value {
+public class IntegerNumber extends Number {
     int value;
     public IntegerNumber(int val)
     {
@@ -10,28 +10,28 @@ public class IntegerNumber extends Value {
     }
 
     @Override
-    public void add(Value v) {
+    public void add(Number v) {
         if(v instanceof IntegerNumber){
             value += ((IntegerNumber) v).value;
         }
     }
 
     @Override
-    public void subtract(Value v) {
+    public void subtract(Number v) {
         if(v instanceof IntegerNumber){
             value -= ((IntegerNumber) v).value;
         }
     }
 
     @Override
-    public void multiply(Value v) {
+    public void multiply(Number v) {
         if(v instanceof IntegerNumber){
             value *= ((IntegerNumber) v).value;
         }
     }
 
     @Override
-    public void divide(Value v) {
+    public void divide(Number v) {
         if(v instanceof IntegerNumber){
             int divisor = ((IntegerNumber) v).value;
             if(divisor == 0)
@@ -42,7 +42,37 @@ public class IntegerNumber extends Value {
     }
 
     @Override
-    public Value evaluate() {
+    public BooleanValue eq(Number v) {
+        return new BooleanValue(value == ((IntegerNumber) v).value);
+    }
+
+    @Override
+    public BooleanValue neq(Number v) {
+        return new BooleanValue(value != ((IntegerNumber) v).value);
+    }
+
+    @Override
+    public BooleanValue gte(Number v) {
+        return new BooleanValue(value >= ((IntegerNumber) v).value);
+    }
+
+    @Override
+    public BooleanValue lte(Number v) {
+        return new BooleanValue( value <= ((IntegerNumber) v).value);
+    }
+
+    @Override
+    public BooleanValue gt(Number v) {
+        return new BooleanValue(value >= ((IntegerNumber) v).value);
+    }
+
+    @Override
+    public BooleanValue lt(Number v) {
+        return new BooleanValue(value < ((IntegerNumber) v).value);
+    }
+
+    @Override
+    public IntegerNumber evaluate() {
         return this;
     }
 }

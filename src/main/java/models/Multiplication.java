@@ -17,8 +17,8 @@ public class Multiplication extends ArithmeticExpression{
 
     @Override
     public Value evaluate() {
-        Value value = left.evaluate();
-        value.multiply(right.evaluate());
+        var value = (Number) left.evaluate();
+        value.multiply((Number) right.evaluate());
         return value;
     }
 }

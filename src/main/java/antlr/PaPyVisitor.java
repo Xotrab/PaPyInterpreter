@@ -77,11 +77,53 @@ public interface PaPyVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAddition(PaPyParser.AdditionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PaPyParser#logicalExpression}.
+	 * Visit a parse tree produced by the {@code logicalNot}
+	 * labeled alternative in {@link PaPyParser#logicalExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitLogicalExpression(PaPyParser.LogicalExpressionContext ctx);
+	T visitLogicalNot(PaPyParser.LogicalNotContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code logicalParentheses}
+	 * labeled alternative in {@link PaPyParser#logicalExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLogicalParentheses(PaPyParser.LogicalParenthesesContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code logicalValue}
+	 * labeled alternative in {@link PaPyParser#logicalExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLogicalValue(PaPyParser.LogicalValueContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code logicalComparison}
+	 * labeled alternative in {@link PaPyParser#logicalExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLogicalComparison(PaPyParser.LogicalComparisonContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code logicalAnd}
+	 * labeled alternative in {@link PaPyParser#logicalExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLogicalAnd(PaPyParser.LogicalAndContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code logicalOr}
+	 * labeled alternative in {@link PaPyParser#logicalExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLogicalOr(PaPyParser.LogicalOrContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PaPyParser#comparisonExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitComparisonExpression(PaPyParser.ComparisonExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PaPyParser#variableDeclaration}.
 	 * @param ctx the parse tree
@@ -179,11 +221,11 @@ public interface PaPyVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNumber(PaPyParser.NumberContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PaPyParser#logicalValue}.
+	 * Visit a parse tree produced by {@link PaPyParser#booleanValue}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitLogicalValue(PaPyParser.LogicalValueContext ctx);
+	T visitBooleanValue(PaPyParser.BooleanValueContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PaPyParser#type}.
 	 * @param ctx the parse tree

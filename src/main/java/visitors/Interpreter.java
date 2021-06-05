@@ -73,4 +73,54 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
     public Section visitArithmeticParentheses(PaPyParser.ArithmeticParenthesesContext ctx) {
         return visit(ctx.arithmeticExpression()); // Skip parentheses and simply visit the expression  between them
     }
+
+    @Override
+    public Section visitBooleanValue(PaPyParser.BooleanValueContext ctx) {
+        String valueTxt = ctx.getChild(0).getText();
+        Token token = (Token) ctx.getChild(0).getPayload();
+        int tokenType = token.getType();
+        var value = tokenType == PaPyLexer.TRUE;
+
+        return new BooleanValue(value);
+    }
+
+    @Override
+    public Section visitLogicalComparison(PaPyParser.LogicalComparisonContext ctx) {
+        ParseTree comparisonExpression = ctx.comparisonExpression();
+        Expression left =  (Expression) visit(comparisonExpression.getChild(0));
+        Expression right =  (Expression) visit(comparisonExpression.getChild(2));
+        String operator = comparisonExpression.getChild(1).getText(); // Logical comparison always has the operator at the child with index 1
+
+        return new ComparisonOperation(left, right, operator);
+    }
+
+    @Override
+    public Section visitLogicalNot(PaPyParser.LogicalNotContext ctx) {
+        Expression expression =  (Expression) visit(ctx.logicalExpression());
+
+        return new NotLogicalOperation(expression);
+    }
+
+    @Override
+    public Section visitLogicalAnd(PaPyParser.LogicalAndContext ctx) {
+        Expression left =  (Expression) visit(ctx.getChild(0));
+        Expression right =  (Expression) visit(ctx.getChild(2));
+        String operator = ctx.AND().getText();
+
+        return new BinaryLogicalOperation(left, right, operator);
+    }
+
+    @Override
+    public Section visitLogicalOr(PaPyParser.LogicalOrContext ctx) {
+        Expression left =  (Expression) visit(ctx.getChild(0));
+        Expression right =  (Expression) visit(ctx.getChild(2));
+        String operator = ctx.OR().getText();
+
+        return new BinaryLogicalOperation(left, right, operator);
+    }
+
+    @Override
+    public Section visitLogicalParentheses(PaPyParser.LogicalParenthesesContext ctx) {
+        return visit(ctx.logicalExpression());
+    }
 }

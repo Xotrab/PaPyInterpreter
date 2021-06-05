@@ -83,12 +83,22 @@ arithmeticExpression:
      ;
 
 logicalExpression:
-  | LPAR logicalExpression RPAR
-  | NOT logicalExpression
-  | logicalExpression (EQ|NEQ|GTE|LTE|GT|LT) logicalExpression
-  | logicalExpression AND logicalExpression
-  | logicalExpression OR logicalExpression
-  | value;
+  LPAR logicalExpression RPAR # logicalParentheses
+  | NOT logicalExpression # logicalNot
+  | logicalExpression AND logicalExpression # logicalAnd
+  | logicalExpression OR logicalExpression # logicalOr
+  | comparisonExpression # logicalComparison
+  | value # logicalValue
+  ;
+
+comparisonExpression:
+     arithmeticExpression EQ arithmeticExpression
+     | arithmeticExpression NEQ arithmeticExpression
+     | arithmeticExpression GTE arithmeticExpression
+     | arithmeticExpression LTE arithmeticExpression
+     | arithmeticExpression GT arithmeticExpression
+     | arithmeticExpression LT arithmeticExpression
+     ;
 
 variableDeclaration:
   type IDENTIFIER ASSIGN expression;
@@ -138,14 +148,14 @@ value:
   number
   | funcCall
   | IDENTIFIER
-  | logicalValue
+  | booleanValue
   | STRING;
 
 number:
   FLOAT
   | INT;
  // | SCIENTIFIC;
-logicalValue:
+booleanValue:
   TRUE
   | FALSE;
 
