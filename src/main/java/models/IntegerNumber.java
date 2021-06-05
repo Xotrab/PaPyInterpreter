@@ -9,36 +9,28 @@ public class IntegerNumber extends Number {
         value = val;
     }
 
+    //For now let's assume we can only add/sub/mul/div two ints and not int with float later maybe fix
     @Override
-    public void add(Number v) {
-        if(v instanceof IntegerNumber){
-            value += ((IntegerNumber) v).value;
-        }
+    public IntegerNumber add(Number v) {
+            return new IntegerNumber(value + ((IntegerNumber) v).value);
     }
 
     @Override
-    public void subtract(Number v) {
-        if(v instanceof IntegerNumber){
-            value -= ((IntegerNumber) v).value;
-        }
+    public IntegerNumber subtract(Number v) {
+        return new IntegerNumber(value - ((IntegerNumber) v).value);
     }
 
     @Override
-    public void multiply(Number v) {
-        if(v instanceof IntegerNumber){
-            value *= ((IntegerNumber) v).value;
-        }
+    public IntegerNumber multiply(Number v) {
+        return new IntegerNumber(value * ((IntegerNumber) v).value);
     }
 
     @Override
-    public void divide(Number v) {
-        if(v instanceof IntegerNumber){
-            int divisor = ((IntegerNumber) v).value;
-            if(divisor == 0)
-                throw new RuntimeException("Divison by 0");
-
-            value /= ((IntegerNumber) v).value;
-        }
+    public IntegerNumber divide(Number v) {
+        int divisor = ((IntegerNumber) v).value;
+        if(divisor == 0)
+            throw new RuntimeException("Divison by 0");
+        return new IntegerNumber(value / divisor);
     }
 
     @Override

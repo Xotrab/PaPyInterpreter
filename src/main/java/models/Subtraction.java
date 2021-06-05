@@ -1,10 +1,10 @@
 package models;
 
 public class Subtraction extends ArithmeticExpression {
-    public ArithmeticExpression left;
-    public ArithmeticExpression right;
+    public Expression left;
+    public Expression right;
 
-    public Subtraction(ArithmeticExpression leftExpr, ArithmeticExpression rightExpr)
+    public Subtraction(Expression leftExpr, Expression rightExpr)
     {
         left = leftExpr;
         right = rightExpr;
@@ -17,6 +17,6 @@ public class Subtraction extends ArithmeticExpression {
 
     @Override
     public Value evaluate() {
-        return null;
+        return ((Number) left.evaluate()).subtract((Number) right.evaluate());
     }
 }

@@ -1,10 +1,10 @@
 package models;
 
 public abstract class Number extends Value {
-    public abstract void add(Number v);
-    public abstract void subtract(Number v);
-    public abstract void multiply(Number v);
-    public abstract void divide(Number v);
+    public abstract Number add(Number v);
+    public abstract Number subtract(Number v);
+    public abstract Number multiply(Number v);
+    public abstract Number divide(Number v);
     public abstract BooleanValue eq(Number v);
     public abstract BooleanValue neq(Number v);
     public abstract BooleanValue gte(Number v);

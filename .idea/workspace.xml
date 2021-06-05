@@ -2,70 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39b930d9-dafc-4e20-98f5-35569aaafaf6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/BinaryLogicalOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/BooleanValue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/ComparisonOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/LogicalExpression.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/NotLogicalOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/Number.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileContent/fileContent.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyBaseVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyBaseVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$AdditionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$AdditionContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$AirthmeticValueContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$AirthmeticValueContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$ArgListContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$ArgListContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$ArithmeticExpressionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$ArithmeticExpressionContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$ArithmeticParenthesesContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$ArithmeticParenthesesContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$BlockContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$BlockContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$DivisionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$DivisionContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$ElifStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$ElifStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$ElseStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$ElseStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$ExpressionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$ExpressionContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$ForStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$ForStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$FuncCallContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$FuncCallContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$FunctionDeclarationArgumentContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$FunctionDeclarationArgumentContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$FunctionDeclarationContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$FunctionDeclarationContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$IfStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$IfStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$LogicalExpressionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$LogicalExpressionContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$LogicalValueContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$LogicalValueContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$LoopStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$LoopStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$MultiplicationContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$MultiplicationContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$NumberContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$NumberContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$ProgramContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$ProgramContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$RangeContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$RangeContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$ReturnBlockContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$ReturnBlockContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$StatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$StatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$SubtractionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$SubtractionContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$TypeContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$TypeContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$ValueContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$ValueContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$VariableDeclarationContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$VariableDeclarationContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$WhileStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser$WhileStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyVisitor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/models/Addition.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/models/Addition.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/models/FloatNumber.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/models/FloatNumber.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/models/IntegerNumber.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/models/IntegerNumber.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/models/Multiplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/models/Multiplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/models/Value.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/models/Value.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/antlr/PaPy.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/antlr/PaPy.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/antlr/PaPy.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/antlr/PaPy.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/antlr/PaPyBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/antlr/PaPyBaseVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/antlr/PaPyParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/antlr/PaPyParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/antlr/PaPyVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/antlr/PaPyVisitor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/inputExamples/test1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/inputExamples/test1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/models/Addition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Addition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/ArithmeticExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/ArithmeticExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Division.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Division.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/models/FloatNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/FloatNumber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/models/IntegerNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/IntegerNumber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/models/Multiplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Multiplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/Value.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Value.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Number.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Number.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Subtraction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Subtraction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/visitors/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/visitors/Interpreter.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

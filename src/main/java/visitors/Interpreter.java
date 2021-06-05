@@ -62,11 +62,27 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
     }
 
     @Override
+    public Section visitSubtraction(PaPyParser.SubtractionContext ctx) {
+        Expression left = (Expression) visit(ctx.getChild(0));
+        Expression right = (Expression) visit(ctx.getChild(2));
+
+        return new Subtraction(left, right);
+    }
+
+    @Override
     public Section visitMultiplication(PaPyParser.MultiplicationContext ctx) {
         Expression left = (Expression) visit(ctx.getChild(0));
         Expression right = (Expression) visit(ctx.getChild(2));
 
         return new Multiplication(left, right);
+    }
+
+    @Override
+    public Section visitDivision(PaPyParser.DivisionContext ctx) {
+        Expression left = (Expression) visit(ctx.getChild(0));
+        Expression right = (Expression) visit(ctx.getChild(2));
+
+        return new Division(left, right);
     }
 
     @Override

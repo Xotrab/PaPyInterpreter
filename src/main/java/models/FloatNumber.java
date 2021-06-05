@@ -8,23 +8,26 @@ public class FloatNumber extends Number {
     }
 
     @Override
-    public void add(Number v) {
-
+    public FloatNumber add(Number v) {
+        return new FloatNumber(value + ((FloatNumber) v).value);
     }
 
     @Override
-    public void subtract(Number v) {
-
+    public FloatNumber subtract(Number v) {
+        return new FloatNumber(value - ((FloatNumber) v).value);
     }
 
     @Override
-    public void multiply(Number v) {
-
+    public FloatNumber multiply(Number v) {
+        return new FloatNumber(value * ((FloatNumber) v).value);
     }
 
     @Override
-    public void divide(Number v) {
-
+    public FloatNumber divide(Number v) {
+        double divisor = ((FloatNumber) v).value;
+        if(divisor == 0.0)
+            throw new RuntimeException("Divison by 0");
+        return new FloatNumber(value / divisor);
     }
 
     @Override
