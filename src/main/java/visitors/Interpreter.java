@@ -43,6 +43,27 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
     }
 
     @Override
+    public Section visitValue(PaPyParser.ValueContext ctx) {
+        ParseTree child = ctx.getChild(0);
+
+        if(child.getPayload() instanceof Token) { //If the child is a token - e.g. IDENTIFIER
+            Token token = (Token) ctx.getChild(0).getPayload();
+            int tokenType = token.getType();
+
+            if (tokenType == PaPyLexer.IDENTIFIER) { //If the token is Identifier then do the following
+                String identifier = ctx.IDENTIFIER().getText(); //Retrieve the variable identifier
+
+                if (!variables.containsKey(identifier)) //If it's not declared then throw an error
+                    throw new RuntimeException("Reference to the undeclared variable");
+
+                return variables.get(identifier).value; //If everything goes right then simply return the Value at the given key
+            }
+        }
+
+        return visit(child); //For any other token types simply visit them
+    }
+
+    @Override
     public Section visitNumber(PaPyParser.NumberContext ctx) {
         String valueTxt = ctx.getChild(0).getText();
         Token token = (Token) ctx.getChild(0).getPayload();
