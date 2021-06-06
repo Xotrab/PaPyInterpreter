@@ -1,10 +1,10 @@
 package models;
 
 public class Division extends ArithmeticExpression {
-    public ArithmeticExpression left;
-    public ArithmeticExpression right;
+    public Expression left;
+    public Expression right;
 
-    public Division(ArithmeticExpression leftExpr, ArithmeticExpression rightExpr)
+    public Division(Expression leftExpr, Expression rightExpr)
     {
         left = leftExpr;
         right = rightExpr;
@@ -17,6 +17,6 @@ public class Division extends ArithmeticExpression {
 
     @Override
     public Value evaluate() {
-        return null;
+        return ((Number) left.evaluate()).divide((Number) right.evaluate());
     }
 }

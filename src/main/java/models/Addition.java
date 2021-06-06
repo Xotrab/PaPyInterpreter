@@ -17,8 +17,6 @@ public class Addition extends ArithmeticExpression {
 
     @Override
     public Value evaluate() {
-        Value value = left.evaluate();
-        value.add(right.evaluate());
-        return value;
+        return ((Number) left.evaluate()).add((Number) right.evaluate());
     }
 }
