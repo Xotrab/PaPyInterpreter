@@ -9,6 +9,11 @@ public class IntegerNumber extends Number {
         value = val;
     }
 
+    @Override
+    public String toString() {
+        return Integer.toString(value);
+    }
+
     //For now let's assume we can only add/sub/mul/div two ints and not int with float later maybe fix
     @Override
     public IntegerNumber add(Number v) {

@@ -1,5 +1,26 @@
-int x = (2+2)*5
-int y = 3+2*5
+int x = 4
+int y = 6
+x + x
+x + y
 int z = x + y
-bool gigaDupcia = not (21 != 37 and not not (21 < 37))
-float lolek = (21.37 + 42.0) / 6.9
+z
+if(True) {
+    int xd = 420
+    xd + y
+
+    if(xd == 426) {
+        xd + x
+        int k = 2
+    }
+    elif( xd == 2137) {
+        xd
+    }
+    else {
+        x * x
+        1337
+    }
+}
+
+
+
+
