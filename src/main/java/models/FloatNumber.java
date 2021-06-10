@@ -8,6 +8,11 @@ public class FloatNumber extends Number {
     }
 
     @Override
+    public String toString() {
+        return Double.toString(value);
+    }
+
+    @Override
     public FloatNumber add(Number v) {
         return new FloatNumber(value + ((FloatNumber) v).value);
     }

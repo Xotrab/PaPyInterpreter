@@ -7,21 +7,38 @@ import models.*;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Interpreter extends PaPyBaseVisitor<Section> {
 
     private HashMap<String, Function> functions;
-    private HashMap<String, Variable> variables;
+
+    private int scopeDepth = 0; //determines the current scope depth that we are in
+    private List<HashMap<String,Variable>> scopes; // each hashMap in a list represents the scope, the item at 0 is always present and resembles the global scope
 
     public Interpreter(){
         functions = new HashMap<>();
-        variables = new HashMap<>();
+        scopes = new ArrayList<>();
+        scopes.add(new HashMap<String,Variable>()); // add the first hashMap, which represents the global scope
+
     }
 
     @Override
     public Section visitStatement(PaPyParser.StatementContext ctx) {
         return visit(ctx.getChild(0)); //Statement has two children 0 - expression/funcCall/ifStatement etc and 1 - nl, so simply skip the nl's and visit only child at 0
+    }
+
+    @Override
+    public Section visitExpression(PaPyParser.ExpressionContext ctx) {
+        Section section = visitChildren(ctx); //Visit all the children
+
+        //If the grand parent of an expression is the section rule it means we want to print the evaluated expression to the terminal
+        if(ctx.parent.parent.getRuleIndex() == PaPyParser.RULE_section)
+            System.out.println(((Expression) section).evaluate());
+
+        return section;
     }
 
     @Override
@@ -33,12 +50,13 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
 
         Variable variable = new Variable(type, identifier, value);
 
-        if(variables.containsKey(identifier)){
-            //Print an error msg and stop the execution as the variable has been already declared
-            throw new RuntimeException("Variable has been already declared");
+        for(int i = scopeDepth; i >= 0; i--) {
+            if(scopes.get(i).containsKey(identifier))
+                throw new RuntimeException("Variable has been already declared");
         }
 
-        variables.put(identifier, variable);
+        scopes.get(scopeDepth).put(identifier, variable);
+
         return variable;
     }
 
@@ -53,10 +71,18 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
             if (tokenType == PaPyLexer.IDENTIFIER) { //If the token is Identifier then do the following
                 String identifier = ctx.IDENTIFIER().getText(); //Retrieve the variable identifier
 
-                if (!variables.containsKey(identifier)) //If it's not declared then throw an error
-                    throw new RuntimeException("Reference to the undeclared variable");
+                Value returnValue = null;
+                for(int i = scopeDepth; i >= 0; i--) { //Go throught all the scopes starting from the current one to the global scope
+                    if(scopes.get(i).containsKey(identifier)) { //If the i-th scope has the variable declaration with identifier
+                        returnValue = scopes.get(i).get(identifier).value; //simply retrieve the value and break
+                        break;
+                    }
+                }
 
-                return variables.get(identifier).value; //If everything goes right then simply return the Value at the given key
+                if(returnValue == null) //returnValue will be null if none of the scopes had the variable with identifier declared
+                    throw new RuntimeException("Reference to the undeclared variable"); //so throw and error
+
+                return returnValue;
             }
         }
 
@@ -159,5 +185,64 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
     @Override
     public Section visitLogicalParentheses(PaPyParser.LogicalParenthesesContext ctx) {
         return visit(ctx.logicalExpression());
+    }
+
+    @Override
+    public Section visitIfStatement(PaPyParser.IfStatementContext ctx) {
+        Expression condition = (Expression) visit(ctx.expression()); //Visit the if statement condition
+        BooleanValue evaluatedConditionValue = (BooleanValue) condition.evaluate(); //Evaluate the if condition value
+
+        if(evaluatedConditionValue.value) { //If the condition evaluated to true
+            return visit(ctx.block()); //Simply visit the block
+        }
+
+        ParseTree lastChild = ctx.getChild(ctx.getChildCount() - 1); //Get the last child
+
+        if((lastChild.getPayload() instanceof Token)) //If it's a token it means there is no else/elseif block
+            return null;
+
+        return visit(lastChild); //Otherwise the last child is else/elseif so visit it
+    }
+
+    @Override
+    public Section visitElifStatement(PaPyParser.ElifStatementContext ctx) {
+        Expression condition = (Expression) visit(ctx.expression()); //Visit the elseif statement condition
+        BooleanValue evaluatedConditionValue = (BooleanValue) condition.evaluate(); //Evaluate the if condition value
+
+        if(evaluatedConditionValue.value) { //If the condition evaluated to true
+            return visit(ctx.block()); //Simply visit the block
+        }
+
+        ParseTree lastChild = ctx.getChild(ctx.getChildCount() - 1); //Get the last child
+
+        if((lastChild.getPayload() instanceof Token)) //If it's a token it means there is no else/elseif block
+            return null;
+
+        return visit(lastChild); //Otherwise the last child is else/elseif so visit it
+    }
+
+    @Override
+    public Section visitElseStatement(PaPyParser.ElseStatementContext ctx) {
+        return visit(ctx.block());
+    }
+
+    @Override
+    public Section visitBlock(PaPyParser.BlockContext ctx) {
+
+        scopeDepth++; //when visit the block increment the scopeDepth counter, which is used to correctly add/check declared variables
+        scopes.add(new HashMap<String,Variable>()); //and add the new hashMap for this particular scope
+
+        List<PaPyParser.StatementContext> statements = ctx.statement(); //retrieve the the list of block statements
+
+        for (PaPyParser.StatementContext statementContext : statements) {
+            Statement statement = (Statement) visit(statementContext); // visit each of the statements
+            if (statement instanceof Expression) //If the statement in block is an expression then print it's evaluated value
+                System.out.println(((Expression) statement).evaluate());
+        }
+
+        scopes.remove(scopes.size() - 1); //After evaluating the whole block simply remove the hashMap for that block
+        scopeDepth--; //and decrement the scopeDepth
+
+        return null;
     }
 }

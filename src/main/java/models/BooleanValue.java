@@ -2,10 +2,15 @@ package models;
 
 public class BooleanValue extends Value {
 
-    boolean value;
+    public boolean value;
 
     public BooleanValue(boolean v) {
         value = v;
+    }
+
+    @Override
+    public String toString() {
+        return value ? "True" : "False";
     }
 
     @Override
