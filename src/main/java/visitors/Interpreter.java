@@ -4,25 +4,39 @@ import antlr.PaPyBaseVisitor;
 import antlr.PaPyLexer;
 import antlr.PaPyParser;
 import models.*;
+import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Interpreter extends PaPyBaseVisitor<Section> {
 
+    private long scopeStackDelimiter = 0; //used to constrain the scope for functions e.g. when invoking a function inside another scope
     private HashMap<String, Function> functions;
 
     private int scopeDepth = 0; //determines the current scope depth that we are in
     private List<HashMap<String,Variable>> scopes; // each hashMap in a list represents the scope, the item at 0 is always present and resembles the global scope
 
+    private Map<String, Class<? extends Value>> nameToType = Map.of( //xD
+            "int", IntegerNumber.class,
+            "float", FloatNumber.class,
+            "bool", BooleanValue.class
+    );
+
+    private Map<Class<? extends Value>, String> typeToName = Map.of( //xD2
+            IntegerNumber.class, "int",
+            FloatNumber.class, "float",
+            BooleanValue.class, "bool"
+    );
+
     public Interpreter(){
         functions = new HashMap<>();
         scopes = new ArrayList<>();
         scopes.add(new HashMap<String,Variable>()); // add the first hashMap, which represents the global scope
-
     }
 
     @Override
@@ -50,10 +64,14 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
 
         Variable variable = new Variable(type, identifier, value);
 
-        for(int i = scopeDepth; i >= 0; i--) {
+        for(int i = scopeDepth; i >= scopeStackDelimiter; i--) { //in case of function calls we want to constrain the visible scopes based on the delimiter
             if(scopes.get(i).containsKey(identifier))
                 throw new RuntimeException("Variable has been already declared");
         }
+
+        //We want to allow the functions to access the global scope, even thought we might check the global scope twice it's not a problem
+        //if(scopes.get(0).containsKey(identifier))
+        //    throw new RuntimeException("Variable has been already declared");
 
         scopes.get(scopeDepth).put(identifier, variable);
 
@@ -68,19 +86,26 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
             Token token = (Token) ctx.getChild(0).getPayload();
             int tokenType = token.getType();
 
+            var wasValueFound = false;
+
             if (tokenType == PaPyLexer.IDENTIFIER) { //If the token is Identifier then do the following
                 String identifier = ctx.IDENTIFIER().getText(); //Retrieve the variable identifier
 
                 Value returnValue = null;
-                for(int i = scopeDepth; i >= 0; i--) { //Go throught all the scopes starting from the current one to the global scope
+                for(int i = scopeDepth; i >= scopeStackDelimiter; i--) { //Go through all the scopes starting from the current one to the one set by the delimiter
                     if(scopes.get(i).containsKey(identifier)) { //If the i-th scope has the variable declaration with identifier
                         returnValue = scopes.get(i).get(identifier).value; //simply retrieve the value and break
+                        wasValueFound = true;
                         break;
                     }
                 }
 
+                //Same as in VisitVariableDeclaration, we allow the functions to access the global scope
+                if(!wasValueFound && scopes.get(0).containsKey(identifier))
+                    returnValue = scopes.get(0).get(identifier).value;
+
                 if(returnValue == null) //returnValue will be null if none of the scopes had the variable with identifier declared
-                    throw new RuntimeException("Reference to the undeclared variable"); //so throw and error
+                    throw new RuntimeException("Reference to the undeclared variable " + identifier); //so throw and error
 
                 return returnValue;
             }
@@ -198,7 +223,7 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
 
         ParseTree lastChild = ctx.getChild(ctx.getChildCount() - 1); //Get the last child
 
-        if((lastChild.getPayload() instanceof Token)) //If it's a token it means there is no else/elseif block
+        if(((RuleContext)lastChild).getRuleIndex() == PaPyParser.RULE_block) //If it's a token it means there is no else/elseif block
             return null;
 
         return visit(lastChild); //Otherwise the last child is else/elseif so visit it
@@ -206,6 +231,7 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
 
     @Override
     public Section visitElifStatement(PaPyParser.ElifStatementContext ctx) {
+
         Expression condition = (Expression) visit(ctx.expression()); //Visit the elseif statement condition
         BooleanValue evaluatedConditionValue = (BooleanValue) condition.evaluate(); //Evaluate the if condition value
 
@@ -215,7 +241,7 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
 
         ParseTree lastChild = ctx.getChild(ctx.getChildCount() - 1); //Get the last child
 
-        if((lastChild.getPayload() instanceof Token)) //If it's a token it means there is no else/elseif block
+        if(((RuleContext)lastChild).getRuleIndex() == PaPyParser.RULE_block) //If it's a token it means there is no else/elseif block
             return null;
 
         return visit(lastChild); //Otherwise the last child is else/elseif so visit it
@@ -228,6 +254,12 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
 
     @Override
     public Section visitBlock(PaPyParser.BlockContext ctx) {
+
+        var previousScopeStackDelimiter = scopeStackDelimiter; //store the current delimiter state in order to reset it later on
+
+        if(ctx.parent.getRuleIndex() == PaPyParser.RULE_functionDeclaration) { //If the block is connected to the function declaration
+            scopeStackDelimiter = scopes.size() - 1; //then set the delimiter accordingly, -1 cause we allow the function to access the args hashMap
+        }
 
         scopeDepth++; //when visit the block increment the scopeDepth counter, which is used to correctly add/check declared variables
         scopes.add(new HashMap<String,Variable>()); //and add the new hashMap for this particular scope
@@ -243,6 +275,112 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
         scopes.remove(scopes.size() - 1); //After evaluating the whole block simply remove the hashMap for that block
         scopeDepth--; //and decrement the scopeDepth
 
+        scopeStackDelimiter = previousScopeStackDelimiter; //Go back to the previous delimiter state before the function call
+
         return null;
+    }
+
+    @Override
+    public Section visitReturnBlock(PaPyParser.ReturnBlockContext ctx) {
+
+        var previousScopeStackDelimiter = scopeStackDelimiter; //store the current delimiter state in order to reset it later on
+        scopeStackDelimiter = scopes.size() - 1; //set the delimiter accordingly, -1 cause we allow the function to access the args hashMap
+
+        scopeDepth++; //when visit the block increment the scopeDepth counter, which is used to correctly add/check declared variables
+        scopes.add(new HashMap<String,Variable>()); //and add the new hashMap for this particular scope
+
+        List<PaPyParser.StatementContext> statements = ctx.statement(); //retrieve the list of block statements
+
+        for (PaPyParser.StatementContext statementContext : statements) {
+            Statement statement = (Statement) visit(statementContext); // visit each of the statements
+            if (statement instanceof Expression) //If the statement in block is an expression then print it's evaluated value
+                System.out.println(((Expression) statement).evaluate());
+        }
+
+        Expression returnExpression =  (Expression) visit(ctx.returnExpression().expression());
+
+        scopes.remove(scopes.size() - 1); //After evaluating the whole block simply remove the hashMap for that block
+        scopeDepth--; //and decrement the scopeDepth
+
+        scopeStackDelimiter = previousScopeStackDelimiter; //Go back to the previous delimiter state before the function call
+
+        Value returnValue = returnExpression.evaluate();
+
+        //Access the parent type context and retrieve the return type in string
+        String expectedReturnType = ((PaPyParser.FunctionDeclarationContext) (ctx.parent)).type().getChild(0).toString();
+
+        if(!returnValue.getClass().equals(nameToType.get(expectedReturnType))) //Check if the class of the evaluated return expression matches the return type from the function declaration (using xd map)
+            throw new RuntimeException("The return type " + typeToName.get(returnValue.getClass()) + " does not match the signature return type " + expectedReturnType);
+
+        return returnValue;
+    }
+
+    @Override
+    public Section visitFunctionDeclaration(PaPyParser.FunctionDeclarationContext ctx) {
+        String identifier = ctx.IDENTIFIER().getText(); //Retrieve the function identifier
+
+        List<PaPyParser.FunctionDeclarationArgumentContext> arguments = ctx.functionDeclarationArgument(); //retrieve all the arguments
+        List<FunctionDeclarationArgument> declarationArguments = new ArrayList<>(); //create a list, which will be appended upon visiting a FunctionDeclarationArgument node
+
+        for (PaPyParser.FunctionDeclarationArgumentContext argument: arguments) {
+            String argumentIdentifier = argument.IDENTIFIER().getText(); //retrieve the argument's identifier
+            String argumentType = argument.type().getChild(0).getText(); //retrieve the argument's type (typeContext has always only one child, thus we call getChild(0))
+            declarationArguments.add(new FunctionDeclarationArgument(argumentType, argumentIdentifier)); //when all info has been gathered, then add the new argument object to the list
+        }
+
+        String returnType = ctx.RET() != null ? ctx.type().toString() : null; //If the RET token is present then get the return type from the .type() child, otherwise set the returnType to null;
+
+        ParseTree bodyReference = ctx.getChild(ctx.getChildCount() - 1); //function body is always the last child
+
+        if(functions.containsKey(identifier)) //for now we throw an error if a function with the same identifier has been already declared, no overloading included ;(
+            throw new RuntimeException("Function with identifier " + identifier + " has been already declared");
+
+        Function function = new Function(identifier, declarationArguments, returnType, bodyReference); //Create the Function instance based on retrieved params
+        functions.put(identifier, function); //add the function to the functions hashMap
+
+        return function;
+    }
+
+    @Override
+    public Section visitFuncCall(PaPyParser.FuncCallContext ctx) {
+        String identifier = ctx.IDENTIFIER().toString();
+
+        if(!functions.containsKey(identifier))
+            throw new RuntimeException("Reference to the undeclared function " + identifier);
+
+        Function function = functions.get(identifier);
+
+        ParseTree argList = ctx.argList();
+        int argListChildrenCount = argList.getChildCount();
+
+        int commaCount = (argListChildrenCount - 1) / 2;
+        int argCount = argListChildrenCount - commaCount;
+
+        if(argCount != function.arguments.size())
+            throw new RuntimeException("The passed amount of arguments does not match the amount in the function declaration");
+
+        scopeDepth++;
+        scopes.add(new HashMap<>());
+
+        for(int i = 0; i < argListChildrenCount; i+=2) {
+            var child = argList.getChild(i);
+
+            var valueCtx = (PaPyParser.ValueContext) child;
+            var value = (Value) visit(valueCtx);
+
+            String variableType = function.arguments.get(i >> 1).type;
+            if(!value.getClass().equals(nameToType.get(variableType))) { //Let this line be a secret of mine ;)
+                throw new RuntimeException("The type " + typeToName.get(value.getClass()) + " of the passed argument does not match the expected type " + function.arguments.get(i >> 1).type);
+            }
+
+            String variableIdentifier = function.arguments.get(i >> 1).identifier;
+            scopes.get(scopeDepth).put(function.arguments.get(i >> 1).identifier, new Variable(variableType, variableIdentifier, value));
+        }
+
+        Value returnValue =  (Value) visit(function.body);
+        scopes.remove(scopes.size() - 1);
+        scopeDepth--;
+
+        return returnValue;
     }
 }

@@ -1,26 +1,25 @@
-int x = 4
-int y = 6
-x + x
-x + y
-int z = x + y
-z
-if(True) {
-    int xd = 420
-    xd + y
+int x = 6
+int y = 2
 
-    if(xd == 426) {
-        xd + x
-        int k = 2
-    }
-    elif( xd == 2137) {
-        xd
-    }
-    else {
-        x * x
-        1337
-    }
+def addToFive(int x) ret int {
+    return add(x, 5)
 }
 
+def add(int x, int y) ret int {
+    int z = x + y
+    return z
+}
 
+def addUntilLessThan15(int i) ret int {
+    if(i < 15) {
+        int x = i + 5
+        addUntilLessThan15(x)
+    }
+    return i
+}
+
+addUntilLessThan15(2)
+
+addToFive(20)
 
 

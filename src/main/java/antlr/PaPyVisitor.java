@@ -197,6 +197,12 @@ public interface PaPyVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitReturnBlock(PaPyParser.ReturnBlockContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PaPyParser#returnExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturnExpression(PaPyParser.ReturnExpressionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PaPyParser#funcCall}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

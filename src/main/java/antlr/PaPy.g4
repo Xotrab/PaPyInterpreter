@@ -136,7 +136,10 @@ functionDeclarationArgument:
     type IDENTIFIER;
 
 returnBlock:
-  NL? LBR (statement|NL)* (RETURN expression NL?) RBR;
+  NL? LBR (statement|NL)* returnExpression RBR;
+
+returnExpression:
+    RETURN expression NL?;
 
 funcCall:
   IDENTIFIER LPAR argList? RPAR;
