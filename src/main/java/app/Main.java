@@ -2,6 +2,7 @@ package app;
 
 import antlr.PaPyLexer;
 import antlr.PaPyParser;
+import listeners.SyntaxErrorListener;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -27,6 +28,8 @@ public class Main {
         //Get the abstract syntax tree starting with the program symbol
         ParseTree ast = parser.program();
 
+        if(SyntaxErrorListener.hasError)
+            return;
 
         //Create the program visitor and simply visit
         ProgramVisitor programVisitor = new ProgramVisitor();
@@ -41,6 +44,8 @@ public class Main {
             PaPyLexer lexer = new PaPyLexer(input);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             parser = new PaPyParser(tokens);
+            parser.removeErrorListeners();
+            parser.addErrorListener(new SyntaxErrorListener());
         } catch(IOException e) {
             e.printStackTrace();
         }
