@@ -22,7 +22,7 @@ public class PaPyParser extends Parser {
 		FOR=16, IN=17, WHILE=18, IF=19, ELSE=20, ELIF=21, MUL=22, ADD=23, SUB=24, 
 		DIV=25, REMOVE_AT=26, ASSIGN=27, EQ=28, NEQ=29, LTE=30, GTE=31, GT=32, 
 		LT=33, AND=34, OR=35, NOT=36, TRUE=37, FALSE=38, DEF=39, RET=40, RETURN=41, 
-		COMMA=42, DOT=43, TAB=44, SPACES=45, IDENTIFIER=46;
+		COMMA=42, DOT=43, TAB=44, SPACES=45, IDENTIFIER=46, ERROR=47;
 	public static final int
 		RULE_program = 0, RULE_section = 1, RULE_statement = 2, RULE_expression = 3, 
 		RULE_arithmeticExpression = 4, RULE_logicalExpression = 5, RULE_comparisonExpression = 6, 
@@ -61,7 +61,7 @@ public class PaPyParser extends Parser {
 			"FOR", "IN", "WHILE", "IF", "ELSE", "ELIF", "MUL", "ADD", "SUB", "DIV", 
 			"REMOVE_AT", "ASSIGN", "EQ", "NEQ", "LTE", "GTE", "GT", "LT", "AND", 
 			"OR", "NOT", "TRUE", "FALSE", "DEF", "RET", "RETURN", "COMMA", "DOT", 
-			"TAB", "SPACES", "IDENTIFIER"
+			"TAB", "SPACES", "IDENTIFIER", "ERROR"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -2193,7 +2193,7 @@ public class PaPyParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\60\u0134\4\2\t\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\61\u0134\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+

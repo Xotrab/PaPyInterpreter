@@ -167,3 +167,6 @@ type:
   | FLOAT_TYPE
   | BOOL_TYPE
   | STRING_TYPE;
+
+ERROR:
+    .;
