@@ -60,7 +60,7 @@ public class IntegerNumber extends Number {
 
     @Override
     public BooleanValue gt(Number v) {
-        return new BooleanValue(value >= ((IntegerNumber) v).value);
+        return new BooleanValue(value > ((IntegerNumber) v).value);
     }
 
     @Override

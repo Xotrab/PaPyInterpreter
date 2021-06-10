@@ -8,6 +8,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import visitors.ProgramVisitor;
 
+import javax.xml.transform.ErrorListener;
 import java.io.IOException;
 
 public class Main {
@@ -25,6 +26,7 @@ public class Main {
 
         //Get the abstract syntax tree starting with the program symbol
         ParseTree ast = parser.program();
+
 
         //Create the program visitor and simply visit
         ProgramVisitor programVisitor = new ProgramVisitor();
