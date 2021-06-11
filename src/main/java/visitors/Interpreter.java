@@ -79,6 +79,36 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
     }
 
     @Override
+    public Section visitVariableReassignment(PaPyParser.VariableReassignmentContext ctx) {
+        String identifier = ctx.IDENTIFIER().getText();
+
+        Variable foundVariable = null;
+        for(int i = scopeDepth; i >= scopeStackDelimiter; i--) {
+            if(scopes.get(i).containsKey(identifier)) {
+                foundVariable = scopes.get(i).get(identifier);
+                break;
+            }
+        }
+
+        if(foundVariable == null) {
+            if(scopes.get(0).containsKey(identifier))
+                foundVariable = scopes.get(0).get(identifier);
+        }
+
+        if(foundVariable == null)
+            throw new RuntimeException("Reference to the undeclared variable " + identifier);
+
+        Value newAssignment = ((Expression) visit(ctx.expression())).evaluate();
+
+        if(!newAssignment.getClass().equals(nameToType.get(foundVariable.type)))
+            throw new RuntimeException("The assigned type " + typeToName.get(newAssignment.getClass()) + " does not match the declared variable  type " + foundVariable.type);
+
+        foundVariable.value = newAssignment;
+
+        return null;
+    }
+
+    @Override
     public Section visitValue(PaPyParser.ValueContext ctx) {
         ParseTree child = ctx.getChild(0);
 

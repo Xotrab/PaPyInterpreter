@@ -64,6 +64,7 @@ section:
 statement:
   (expression
   | variableDeclaration
+  | variableReassignment
   | loopStatement
   | funcCall
   | ifStatement) NL;
@@ -102,6 +103,9 @@ comparisonExpression:
 
 variableDeclaration:
   type IDENTIFIER ASSIGN expression;
+
+variableReassignment:
+    IDENTIFIER ASSIGN expression;
 
 loopStatement:
   forStatement

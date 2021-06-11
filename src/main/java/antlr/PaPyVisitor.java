@@ -131,6 +131,12 @@ public interface PaPyVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVariableDeclaration(PaPyParser.VariableDeclarationContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PaPyParser#variableReassignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariableReassignment(PaPyParser.VariableReassignmentContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PaPyParser#loopStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
