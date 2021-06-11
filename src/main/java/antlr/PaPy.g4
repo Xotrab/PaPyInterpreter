@@ -14,7 +14,6 @@ LSQBR: '[';
 RSQBR: ']';
 INT: '0' | [1-9][0-9]*;
 FLOAT: INT DOT INT;
-//SCIENTIFIC: FLOAT 'E'[+-]? INT;
 STRING: '"' ~["]* '"';
 INT_TYPE: 'int';
 FLOAT_TYPE: 'float';
@@ -50,7 +49,7 @@ RETURN: 'return';
 COMMA: ',';
 DOT: '.';
 TAB: '\t';
-SPACES: [ ]+ -> skip; // https://stackoverflow.com/questions/15503561/antlr4-whitespace-handling
+SPACES: [ ]+ -> skip;
 IDENTIFIER: [a-zA-Z][a-zA-Z0-9_]*;
 // --- RULES ---
 
@@ -161,7 +160,6 @@ value:
 number:
   FLOAT
   | INT;
- // | SCIENTIFIC;
 booleanValue:
   TRUE
   | FALSE;

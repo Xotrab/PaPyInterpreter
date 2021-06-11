@@ -6,6 +6,7 @@ import antlr.PaPyParser;
 import models.*;
 import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.ArrayList;
@@ -66,12 +67,9 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
 
         for(int i = scopeDepth; i >= scopeStackDelimiter; i--) { //in case of function calls we want to constrain the visible scopes based on the delimiter
             if(scopes.get(i).containsKey(identifier))
-                throw new RuntimeException("Variable has been already declared");
+                throw new SemanticErrorException("Semantic Error at line " + ctx.start.getLine() +
+                        ": variable \"" + identifier + "\" has been already declared");
         }
-
-        //We want to allow the functions to access the global scope, even thought we might check the global scope twice it's not a problem
-        //if(scopes.get(0).containsKey(identifier))
-        //    throw new RuntimeException("Variable has been already declared");
 
         scopes.get(scopeDepth).put(identifier, variable);
 
@@ -96,12 +94,14 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
         }
 
         if(foundVariable == null)
-            throw new RuntimeException("Reference to the undeclared variable " + identifier);
+            throw new SemanticErrorException("Semantic Error at line " + ctx.start.getLine() + ": reference to the undeclared variable \"" + identifier +"\"");
 
         Value newAssignment = ((Expression) visit(ctx.expression())).evaluate();
 
         if(!newAssignment.getClass().equals(nameToType.get(foundVariable.type)))
-            throw new RuntimeException("The assigned type " + typeToName.get(newAssignment.getClass()) + " does not match the declared variable  type " + foundVariable.type);
+            throw new SemanticErrorException(
+                    "Semantic Error at line " + ctx.start.getLine() +
+                    ": the assigned type \"" + typeToName.get(newAssignment.getClass()) + "\" does not match the declared variable type \"" + foundVariable.type + "\"");
 
         foundVariable.value = newAssignment;
 
@@ -135,7 +135,7 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
                     returnValue = scopes.get(0).get(identifier).value;
 
                 if(returnValue == null) //returnValue will be null if none of the scopes had the variable with identifier declared
-                    throw new RuntimeException("Reference to the undeclared variable " + identifier); //so throw and error
+                    throw new SemanticErrorException("Semantic Error at line " + ctx.start.getLine() + ": reference to the undeclared variable \"" + identifier +"\""); //so throw and error
 
                 return returnValue;
             }
@@ -340,7 +340,8 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
         String expectedReturnType = ((PaPyParser.FunctionDeclarationContext) (ctx.parent)).type().getChild(0).toString();
 
         if(!returnValue.getClass().equals(nameToType.get(expectedReturnType))) //Check if the class of the evaluated return expression matches the return type from the function declaration (using xd map)
-            throw new RuntimeException("The return type " + typeToName.get(returnValue.getClass()) + " does not match the signature return type " + expectedReturnType);
+            throw new SemanticErrorException("Semantic Error at line " + ctx.start.getLine() +
+                    ": the return type \"" + typeToName.get(returnValue.getClass()) + "\" does not match the signature return type \"" + expectedReturnType + "\"");
 
         return returnValue;
     }
@@ -363,7 +364,8 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
         ParseTree bodyReference = ctx.getChild(ctx.getChildCount() - 1); //function body is always the last child
 
         if(functions.containsKey(identifier)) //for now we throw an error if a function with the same identifier has been already declared, no overloading included ;(
-            throw new RuntimeException("Function with identifier " + identifier + " has been already declared");
+            throw new SemanticErrorException("Semantic Error at line " + ctx.start.getLine() +
+                    ": function with identifier \"" + identifier + "\" has been already declared");
 
         Function function = new Function(identifier, declarationArguments, returnType, bodyReference); //Create the Function instance based on retrieved params
         functions.put(identifier, function); //add the function to the functions hashMap
@@ -376,18 +378,20 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
         String identifier = ctx.IDENTIFIER().toString();
 
         if(!functions.containsKey(identifier))
-            throw new RuntimeException("Reference to the undeclared function " + identifier);
+            throw new SemanticErrorException("Semantic Error at line " + ctx.start.getLine() +
+                    ": reference to the undeclared function \"" + identifier + "\"");
 
         Function function = functions.get(identifier);
 
         ParseTree argList = ctx.argList();
-        int argListChildrenCount = argList.getChildCount();
+        int argListChildrenCount = argList != null ?  argList.getChildCount(): 0;
 
         int commaCount = (argListChildrenCount - 1) / 2;
         int argCount = argListChildrenCount - commaCount;
 
         if(argCount != function.arguments.size())
-            throw new RuntimeException("The passed amount of arguments does not match the amount in the function declaration");
+            throw new SemanticErrorException("Semantic Error at line " + ctx.start.getLine() +
+                    ": the passed amount of arguments does not match the amount in the function declaration - got " + argCount + ", expected " + function.arguments.size());
 
         scopeDepth++;
         scopes.add(new HashMap<>());
@@ -400,7 +404,10 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
 
             String variableType = function.arguments.get(i >> 1).type;
             if(!value.getClass().equals(nameToType.get(variableType))) { //Let this line be a secret of mine ;)
-                throw new RuntimeException("The type " + typeToName.get(value.getClass()) + " of the passed argument does not match the expected type " + function.arguments.get(i >> 1).type);
+                throw new SemanticErrorException("Semantic Error at line " + ctx.start.getLine() +
+                        ": the type \"" + typeToName.get(value.getClass()) + "\" of the passed argument \""
+                        + function.arguments.get(i >> 1).identifier + "\"" +
+                        " does not match the expected type \"" + function.arguments.get(i >> 1).type + "\"");
             }
 
             String variableIdentifier = function.arguments.get(i >> 1).identifier;
@@ -435,7 +442,8 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
 
         for(int i = scopeDepth; i >= scopeStackDelimiter; i--) {
             if(scopes.get(i).containsKey(identifier))
-                throw new RuntimeException("Variable has been already declared");
+                throw new SemanticErrorException("Semantic Error at line " + ctx.start.getLine() +
+                        ": variable \"" + identifier + "\" has been already declared");
         }
 
         scopes.get(scopeDepth).put(identifier, loopIndex);
