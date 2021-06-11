@@ -10,15 +10,9 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/antlr/PaPyParser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/visitors/Interpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/visitors/Interpreter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/antlr/PaPy.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/antlr/PaPy.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/antlr/PaPy.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/antlr/PaPy.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/antlr/PaPyBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/antlr/PaPyBaseVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/antlr/PaPyLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/antlr/PaPyLexer.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/antlr/PaPyParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/antlr/PaPyParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/antlr/PaPyVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/antlr/PaPyVisitor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/inputExamples/test1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/inputExamples/test1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/IntegerNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/IntegerNumber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/visitors/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/visitors/Interpreter.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
