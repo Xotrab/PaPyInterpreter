@@ -413,4 +413,48 @@ public class Interpreter extends PaPyBaseVisitor<Section> {
 
         return returnValue;
     }
+
+    @Override
+    public Section visitWhileStatement(PaPyParser.WhileStatementContext ctx) {
+        ParseTree conditionReference =  ctx.logicalExpression();
+
+        while(((BooleanValue)(((Expression) (visit(conditionReference))).evaluate())).value) {
+            visit(ctx.block());
+        }
+
+        return null;
+    }
+
+    @Override
+    public Section visitForStatement(PaPyParser.ForStatementContext ctx) {
+        String identifier = ctx.IDENTIFIER().getText();
+        int startIndex = Integer.parseInt(ctx.range().INT(0).getText());
+        int endIndex = Integer.parseInt(ctx.range().INT(1).getText());
+
+        Variable loopIndex = new Variable("int", identifier, new IntegerNumber(startIndex));
+
+        for(int i = scopeDepth; i >= scopeStackDelimiter; i--) {
+            if(scopes.get(i).containsKey(identifier))
+                throw new RuntimeException("Variable has been already declared");
+        }
+
+        scopes.get(scopeDepth).put(identifier, loopIndex);
+
+        if(startIndex <= endIndex) {
+            for(int i = startIndex; i < endIndex; i++) {
+                visit(ctx.block());
+                ((IntegerNumber) (loopIndex.value)).value += 1;
+            }
+        }
+        else {
+            for(int i = startIndex; i > endIndex; i--) {
+                visit(ctx.block());
+                ((IntegerNumber) (loopIndex.value)).value -= 1;
+            }
+        }
+
+        scopes.get(scopeDepth).remove(identifier);
+
+        return null;
+    }
 }

@@ -48,3 +48,18 @@ silnia
 int fibo = fibonacci(18)
 fibo
 
+def NWD(int a, int b) ret int {
+    while(a != b) {
+        if(a > b) {
+            a = a - b
+        }
+        else {
+            b = b - a
+        }
+    }
+    return a
+}
+
+
+int nwd = NWD(24,36)
+nwd

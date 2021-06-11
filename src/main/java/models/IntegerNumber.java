@@ -3,7 +3,7 @@ package models;
 import java.util.List;
 
 public class IntegerNumber extends Number {
-    int value;
+    public int value;
     public IntegerNumber(int val)
     {
         value = val;
