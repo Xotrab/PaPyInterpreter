@@ -22,4 +22,29 @@ addUntilLessThan15(2)
 
 addToFive(20)
 
+def silnia(int i) ret int {
+    int returnValue = 1
+    if(i > 1) {
+        int z = i - 1
+        returnValue = i * silnia(z)
+    }
+    return returnValue
+}
+
+def fibonacci(int i) ret int {
+    int returnValue = 1
+    if(i > 1) {
+        int minusOne = i - 1
+        int minusTwo = i - 2
+        returnValue = fibonacci(minusOne) + fibonacci(minusTwo)
+    }
+
+    return returnValue
+}
+
+int silnia = silnia(5)
+silnia
+
+int fibo = fibonacci(18)
+fibo
 
