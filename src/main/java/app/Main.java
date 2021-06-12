@@ -3,6 +3,7 @@ package app;
 import antlr.PaPyLexer;
 import antlr.PaPyParser;
 import listeners.SyntaxErrorListener;
+import models.SemanticErrorException;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -17,7 +18,7 @@ public class Main {
     public static void main(String[] args) {
         //For now only allow file inputs, later on add cmd mode when no args are passed
         if(args.length != 1){
-            System.err.println("Please provide a file as an argument");
+            System.err.println("Please provide a file as an argument \n");
             return;
         }
 
@@ -33,7 +34,12 @@ public class Main {
 
         //Create the program visitor and simply visit
         ProgramVisitor programVisitor = new ProgramVisitor();
-        programVisitor.visit(ast);
+        try {
+            programVisitor.visit(ast);
+        }
+        catch (SemanticErrorException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     private static PaPyParser getParser(String fileName) {
