@@ -1,0 +1,65 @@
+int x = 6
+int y = 2
+
+def addToFive(int x) ret int {
+    return add(x, 5)
+}
+
+def add(int x, int y) ret int {
+    int z = x + y
+    return z
+}
+
+def addUntilLessThan15(int i) ret int {
+    if(i < 15) {
+        int x = i + 5
+        addUntilLessThan15(x)
+    }
+    return i
+}
+
+addUntilLessThan15(2)
+
+addToFive(20)
+
+def silnia(int i) ret int {
+    int returnValue = 1
+    if(i > 1) {
+        int z = i - 1
+        returnValue = i * silnia(z)
+    }
+    return returnValue
+}
+
+def fibonacci(int i) ret int {
+    int returnValue = 1
+    if(i > 1) {
+        int minusOne = i - 1
+        int minusTwo = i - 2
+        returnValue = fibonacci(minusOne) + fibonacci(minusTwo)
+    }
+
+    return returnValue
+}
+
+int silnia = silnia(5)
+silnia
+
+int fibo = fibonacci(18)
+fibo
+
+def NWD(int a, int b) ret int {
+    while(a != b) {
+        if(a > b) {
+            a = a - b
+        }
+        else {
+            b = b - a
+        }
+    }
+    return a
+}
+
+
+int nwd = NWD(24,36)
+nwd
